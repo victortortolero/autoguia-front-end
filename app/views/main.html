@@ -1,0 +1,48 @@
+<section class="row" id="tipo-auto">
+
+  <div ng-show="mainCtrl.loadingTypes" class="progress">
+    <div class="indeterminate"></div>
+  </div>
+
+  <p class="flow-text">El tipo de auto que te gustaria tener:</p>
+  <forms id="tipo-auto-form">
+    <!-- <i class="material-icons">label</i> This is text -->
+    <span class="checkbox-holder" ng-repeat="type in mainCtrl.types">
+      <input
+        type="checkbox"
+        ng-checked="mainCtrl.$storage.selectedTypes.indexOf(type.name) > -1"
+        ng-click="mainCtrl.toggleSelection(type.name)"
+        id="{{ type.name | lowercase }}"
+      />
+      <label for="{{ type.name | lowercase }}">{{ type.name | capitalize }}</label>
+    </span>
+  </form>
+
+</section>
+
+
+<section class="row" id="marca-auto">
+
+  <div ng-show="mainCtrl.loadingBrands" class="progress">
+    <div class="indeterminate"></div>
+  </div>
+
+  <p class="flow-text">Marcas de preferencia:</p>
+  <forms id="marca-auto-form">
+    <!-- <i class="material-icons">label</i> This is text -->
+    <span class="cell" ng-repeat="brand in mainCtrl.brands">
+      <input class="img-checkbox" type='checkbox' name='thing' value='valuable' id="thing"/>
+      <label for="thing">
+        <img src="http://placehold.it/800x800" alt="">
+      </label>
+      <!-- check this http://jsfiddle.net/6Mt3Q/ -->
+    </span>
+  </form>
+
+</section>
+
+<h3>
+  {{ mainCtrl.$storage.selectedTypes }}
+</h3>
+
+<h5>Elegir versiones y presupuestos ></h5>

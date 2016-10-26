@@ -1,0 +1,6 @@
+{
+  "brands": [
+    {"name": "Audi", "imageUrl": "path/to/img"}
+    {"name": "Honda", "imageUrl": "path/to/img"}
+  ]
+}
