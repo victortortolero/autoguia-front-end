@@ -9,7 +9,7 @@
  */
 angular.module('autoguiaFrontEndApp')
   .controller('TypesController',
-  function($scope, $window, autoGuiaService, userDataService, UtilitiesService) {
+  function($scope, $timeout, $window, $location, autoGuiaService, userDataService, UtilitiesService, LoadingBarService) {
 
     var vm = this;
 
@@ -33,26 +33,34 @@ angular.module('autoguiaFrontEndApp')
     });
 
     function updateBrands() {
+      LoadingBarService.loading(true);
       vm.loadingBrands = true;
       autoGuiaService.getBrands(vm.filter.types)
       .then(function(res) {
-        console.log(res);
-        vm.brands = res.data.brands;
-        vm.loadingBrands = false;
+        var data = res.data;
+        $timeout(function() {
+          vm.brands = data.brands;
+          vm.loadingBrands = false;
+          LoadingBarService.loading(false);
+        }, 1500);
       });
     }
 
     function activate() {
+      LoadingBarService.loading(true);
       autoGuiaService.getTypes()
       .then(function(res) {
-        console.log(res);
-        vm.loadingTypes = false;
-        vm.types = res.data.types;
+        var data = res.data;
+        $timeout(function() {
+          vm.loadingTypes = false;
+          LoadingBarService.loading(false);
+          vm.types = data.types;
+        }, 1000);
       });
     }
 
     vm.nextPage = function() {
       userDataService.saveFilter(vm.filter);
-      $window.location.href = '#/step-2';
+      $location.path('/step-2');
     }
   });

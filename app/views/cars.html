@@ -1,3 +1,7 @@
+<!-- <button ng-show="vm.selectedCars.length >= 1" class="waves-effect waves-light btn modal-trigger" data-target="form-modal">
+  Modal
+</button> -->
+
 <div class="row">
 
   <div class="col s12" infinite-scroll="vm.fetchCars()" infinite-scroll-distance="0.1">
@@ -16,8 +20,17 @@
         gs-item-autopos="1"
       >
         <ul class="collection with-header z-depth-1 hoverable grid-stack-item-content">
-          <li class="collection-header">
+          <li class="collection-header car-img-container">
             <img class="responsive-img" src="http://placehold.it/800x600" alt="placeholder">
+            <p>
+              <input
+                type="checkbox"
+                ng-checked="vm.filter.types.indexOf(item.name) > -1"
+                ng-click="vm.toggleObjectSelection(item, 'id', vm.selectedCars)"
+                id="{{ 'car-' + item.id }}"
+              />
+              <label for="{{ 'car-' + item.id }}"></label>
+            </p>
           </li>
           <li class="collection-item avatar">
             <i class="material-icons circle">time_to_leave</i>
@@ -43,4 +56,60 @@
     </section>
   </div>
 
+</div>
+
+
+<!-- Modal Structure -->
+<div id="form-modal" class="modal">
+  <div class="modal-content">
+    <form id="offer-form">
+      <div class="row">
+        <p class="flow-text">Que me comunican a los concesionarios que estan cerca a:</p>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">my_location</i>
+          <textarea ng-model="vm.user.address" id="address" class="materialize-textarea"></textarea>
+          <label for="address">Dirección</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="flow-text">Datos Personales</p>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">account_circle</i>
+          <input ng-model="vm.user.name" id="first_name" type="text" class="validate" required>
+          <label for="first_name">Nombre</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">account_circle</i>
+          <input ng-model="vm.user.lastName" id="last_name" type="text" class="validate" required>
+          <label for="last_name">Apellido</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">email</i>
+          <input ng-model="vm.user.email" id="email" type="email" class="validate" required>
+          <label for="email">Correo</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">phone</i>
+          <input ng-model="vm.user.phone" id="phone" type="tel" class="validate" required>
+          <label for="phone">Telefono</label>
+        </div>
+      </div>
+
+      <button type="submit" ng-click="vm.getOffers()" class="right modal-action modal-close waves-effect waves-red btn-flat">
+        Obtener Ofertas!
+      </button>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <!-- <button class="left modal-action modal-close waves-effect waves-red btn-flat">Cerrar</button> -->
+
+  </div>
 </div>

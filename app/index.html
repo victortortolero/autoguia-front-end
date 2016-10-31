@@ -27,18 +27,30 @@
     <div class="header">
       <div class="navbar-fixed">
         <nav>
-          <div class="nav-wrapper container">            
-            <a href="#!" class="brand-logo">Logo</a>
+          <div class="nav-wrapper container">
+            <a href="#!" class="left brand-logo">Logo</a>
+
+            <a
+              ng-show="selectedCars.length >= 1"
+              class="btn waves-effect waves-light blue right"
+              data-target="form-modal"
+            >
+              Obtener Ofertas!!
+            </a>
+
             <div ng-show="loadingBar" class="progress right">
               <div class="indeterminate"></div>
             </div>
           </div>
         </nav>
       </div>
-      <h3>Compra, cotiza y recibe las mejores ofertas para tu nuevo auto</h3>
     </div>
 
     <div class="container">
+      <div class="divider"></div>
+      <h3 class="flow-text section">
+        Compra, cotiza y recibe las mejores ofertas para tu nuevo auto
+      </h3>
       <div ng-view=""></div>
     </div>
 
@@ -79,6 +91,7 @@
     <script src="bower_components/gridstack/dist/gridstack.js"></script>
     <script src="bower_components/ng-infinite-scroll-npm-is-better-than-bower/build/ng-infinite-scroll.js"></script>
     <script src="bower_components/gridstack-angular/dist/gridstack-angular.min.js"></script>
+    <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -92,7 +105,8 @@
         <script src="scripts/controllers/cars.js"></script>
         <script src="scripts/services/utilitiesservice.js"></script>
         <script src="scripts/services/loadingbarservice.js"></script>
+        <script src="scripts/controllers/savefilter.js"></script>
         <!-- endbuild -->
-        <script src="scripts/controllers/scrolldemo.js"></script>
+
 </body>
 </html>

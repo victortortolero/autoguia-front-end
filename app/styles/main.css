@@ -12,6 +12,7 @@
   display: none;
 }
 
+
 .img-checkbox + label {
   background: #999;
   /*display:inline-block;*/
@@ -32,19 +33,25 @@
   font-size: 1.3rem;
 }
 
-
-/* infinite scroll demo */
-.scroller-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
+/*
+ Step 3 styles
+*/
+.car-img-container {
+  position: relative;
 }
 
-.item {
-  width: calc(100% / 3 - 10px);
-  text-align: center;
-  font-size: 6em;
-  margin-top: 0;
-  margin-bottom: 10px;
+.car-img-container img {
+  /*position absolute;*/
+  /*left: 0;
+  top: 0;*/
+}
+
+.car-img-container p {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  right: 10px;
+  top: 0;
 }

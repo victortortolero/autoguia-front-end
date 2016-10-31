@@ -1,64 +1,77 @@
-<section class="row" id="tipo-auto">
+<div class="divider"></div>
 
-  <div ng-show="vm.loadingTypes" class="progress">
-    <div class="indeterminate"></div>
+<div class="row section">
+
+  <div class="col m6">
+
+    <section class="row section" id="tipo-auto">
+
+      <p class="flow-text">El tipo de auto que te gustaria tener:</p>
+      <div ng-show="vm.loadingTypes" class="progress">
+        <div class="indeterminate"></div>
+      </div>
+
+      <forms id="tipo-auto-form">
+        <!-- <i class="material-icons">label</i> This is text -->
+        <span class="checkbox-holder" ng-repeat="type in vm.types">
+          <input
+            type="checkbox"
+            ng-checked="vm.filter.types.indexOf(type.name) > -1"
+            ng-click="vm.toggleSelection(type.name, vm.filter.types)"
+            id="{{ type.name | lowercase }}"
+          />
+          <label for="{{ type.name | lowercase }}">{{ type.name | capitalize }}</label>
+        </span>
+      </form>
+
+    </section>
+
+    <div class="divider"></div>
+
+    <section ng-show="vm.filter.types.length >= 1" class="row section" id="marca-auto">
+      <p class="flow-text">Marcas de preferencia:</p>
+
+      <div ng-show="vm.loadingBrands" class="progress">
+        <div class="indeterminate"></div>
+      </div>
+
+      <section ng-show="!vm.loadingBrands">
+        <forms class="row" id="marca-auto-form">
+          <!-- <i class="material-icons">label</i> This is text -->
+          <span class="col m3 s12" ng-repeat="brand in vm.brands">
+            <input
+              type='checkbox'
+              id="{{ brand.name | lowercase }}"
+              ng-checked="vm.filter.brands.indexOf(brand.name) > -1"
+              ng-click="vm.toggleSelection(brand.name, vm.filter.brands)"
+              id="thing"
+            />
+            <label for="{{ brand.name | lowercase }}">
+              <img class="brand-img responsive-img" src="http://placehold.it/400x400" alt="">
+            </label>
+          </span>
+        </form>
+      </section>
+    </section>
+
+    <h3>
+      {{ vm.filter.types }}
+    </h3>
+    <h3>
+      {{ vm.filter.brands }}
+    </h3>
+
+    <section ng-show="vm.filter.brands.length >= 1">
+      <h5>
+        <a ng-click="vm.nextPage()">Elegir versiones y presupuestos ></a>
+        <button ng-click="vm.nextPage()">asd</button>
+      </h5>
+    </section>
+
   </div>
 
-  <p class="flow-text">El tipo de auto que te gustaria tener:</p>
-  <forms id="tipo-auto-form">
-    <!-- <i class="material-icons">label</i> This is text -->
-    <span class="checkbox-holder" ng-repeat="type in vm.types">
-      <input
-        type="checkbox"
-        ng-checked="vm.filter.types.indexOf(type.name) > -1"
-        ng-click="vm.toggleSelection(type.name, vm.filter.types)"
-        id="{{ type.name | lowercase }}"
-      />
-      <label for="{{ type.name | lowercase }}">{{ type.name | capitalize }}</label>
-    </span>
-  </form>
+  <aside class="col m5 offset-m1">
+    <img class="responsive-img" src="http://placehold.it/1920x1080" alt="placeholder">
+  </aside>
 
-</section>
-
-
-<section ng-show="vm.filter.types.length >= 1" class="row" id="marca-auto">
-
-  <p class="flow-text">Marcas de preferencia:</p>
-  <div ng-show="vm.loadingBrands" class="progress">
-    <div class="indeterminate"></div>
-  </div>
-
-  <section ng-show="!vm.loadingBrands">
-    <forms class="row" id="marca-auto-form">
-      <!-- <i class="material-icons">label</i> This is text -->
-      <span class="col m3 s12" ng-repeat="brand in vm.brands">
-        <input
-          type='checkbox'
-          id="{{ brand.name | lowercase }}"
-          ng-checked="vm.filter.brands.indexOf(brand.name) > -1"
-          ng-click="vm.toggleSelection(brand.name, vm.filter.brands)"
-          id="thing"
-        />
-        <label for="{{ brand.name | lowercase }}">
-          <img class="brand-img responsive-img" src="http://placehold.it/400x400" alt="">
-        </label>
-        <!-- check this http://jsfiddle.net/6Mt3Q/ -->
-      </span>
-    </form>
-  </section>
-
-</section>
-
-<h3>
-  {{ vm.filter.types }}
-</h3>
-<h3>
-  {{ vm.filter.brands }}
-</h3>
-
-<section ng-show="vm.filter.brands.length >= 1">
-  <h5>
-    <a ng-click="vm.nextPage()">Elegir versiones y presupuestos ></a>
-    <button ng-click="vm.nextPage()">asd</button>
-  </h5>
-</section>
+</div>

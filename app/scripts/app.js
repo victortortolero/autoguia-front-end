@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'ngStorage',
     'infinite-scroll',
-    'gridstack-angular'
+    'gridstack-angular',
+    'ngGeolocation'
   ])
   .config(function ($routeProvider, $localStorageProvider) {
     $routeProvider
@@ -39,10 +40,10 @@ angular
         controller: 'CarsCtrl',
         controllerAs: 'vm'
       })
-      .when('/scrolldemo', {
-        templateUrl: 'views/infinite_scroll_demo.html',
-        controller: 'ScrollCtrl',
-        controllerAs: 'vm'
+      .when('/thanks', {
+        templateUrl: 'views/savefilter.html',
+        controller: 'SavefilterCtrl',
+        controllerAs: 'saveFilter'
       })
       .otherwise({
         redirectTo: '/'

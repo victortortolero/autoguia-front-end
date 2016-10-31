@@ -11,16 +11,12 @@ angular.module('autoguiaFrontEndApp')
   .service('userDataService', function($localStorage) {
     var service = {};
     var $storage = $localStorage;
-    var currentFilterIndex = -1;
 
     service.init = function() {
       // $storage.$reset();
       if (typeof $storage.user === 'undefined') {
         $storage.$reset();
-        $storage.user = {
-          filters: [],
-          email: '',
-        };
+        createUser();
       }
       return $storage.user;
     }
@@ -29,21 +25,29 @@ angular.module('autoguiaFrontEndApp')
       var filter = {
         types: [],
         brands: [],
+        valid: false,
       }
       return filter;
     }
 
     service.saveFilter = function(filter) {
-      if (currentFilterIndex === -1) {
-        currentFilterIndex = $storage.user.filters.push(filter) - 1;
+      if ($storage.user.filters.length < 1) {
+        $storage.currentFilterIndex = $storage.user.filters.push(filter) - 1;
       } else {
-        $storage.user.filters[currentFilterIndex] = filter;
+        $storage.user.filters[0] = filter;
       }
-      console.log("Saved");
+    }
+
+    service.saveUserInfo = function(user) {
+      $storage.user.info = angular.extend($storage.user.info, user);
     }
 
     service.currentFilter = function() {
-      return $storage.user.filters[$storage.user.filters.length - 1];
+      return $storage.user.filters[0];
+    }
+
+    service.currentUser = function() {
+      return $storage.user;
     }
 
     /**
@@ -53,11 +57,45 @@ angular.module('autoguiaFrontEndApp')
      * @return Bool
      */
     service.validateStep1 = function() {
-      var currentFilter = $storage.user.filters[$storage.user.filters.length - 1];
-      return
+      var currentFilter = $storage.user.filters[0];
+      var res = typeof currentFilter.types != "undefined" &&
+        typeof currentFilter.brands != "undefined" &&
         currentFilter.types.length >= 1 &&
         currentFilter.brands.length >= 1;
+      return res;
     }
+
+    service.validateStep2 = function() {
+      var currentFilter = $storage.user.filters[0];
+      var res =
+        typeof currentFilter.versions != "undefined" &&
+        currentFilter.versions.length >= 1;
+      return res;
+    }
+
+    service.validate = function() {
+      return $storage.user.filters.length >= 1;
+    }
+
+    function createUser() {
+      // $storage.currentFilterIndex = -1;
+      $storage.user = angular.extend({}, initialUser);
+    }
+
+    var initialUser = {
+      filters: [],
+      info: {
+        name: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        address: '',
+        location: {
+          latitude: 0.0,
+          longitude: 0.0
+        }
+      }
+    };
 
     return service;
   });

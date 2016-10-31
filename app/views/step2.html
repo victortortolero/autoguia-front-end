@@ -1,50 +1,56 @@
-<section class="row" id="version-auto">
+<div class="row">
 
-  <p class="flow-text">El tipo de auto que te gustaria tener:</p>
-  <div ng-show="vm.loadingVersions" class="progress">
-    <div class="indeterminate"></div>
-  </div>
+  <section class="row" id="version-auto">
+    <p class="flow-text">El tipo de auto que te gustaria tener:</p>
+    <div ng-show="vm.loadingVersions" class="progress">
+      <div class="indeterminate"></div>
+    </div>
 
-  <forms id="version-auto-form">
-    <!-- <i class="material-icons">label</i> This is text -->
-    <span class="checkbox-holder" ng-repeat="version in vm.versions">
-      <input
-        type="checkbox"
-        ng-checked="vm.filter.versions.indexOf(version.name) > -1"
-        ng-click="vm.toggleSelection(version.name, vm.filter.versions)"
-        id="{{ version.name | lowercase }}"
-      />
-      <label for="{{ version.name | lowercase }}">{{ version.name | capitalize }}</label>
-    </span>
-  </form>
+    <forms id="version-auto-form">
+      <!-- <i class="material-icons">label</i> This is text -->
+      <span class="checkbox-holder" ng-repeat="version in vm.versions">
+        <input
+          type="checkbox"
+          ng-checked="vm.filter.versions.indexOf(version.name) > -1"
+          ng-click="vm.toggleSelection(version.name, vm.filter.versions)"
+          id="{{ version.name | lowercase }}"
+        />
+        <label for="{{ version.name | lowercase }}">{{ version.name | capitalize }}</label>
+      </span>
+    </form>
+  </section>
 
-</section>
+  <h3>{{ vm.filter.versions }}</h3>
 
-<h3>{{ vm.filter.versions }}</h3>
+  <section ng-show="vm.filter.versions.length >= 1" class="row" id="precio-auto">
+    <p class="flow-text">El tipo de auto que te gustaria tener:</p>
+    <div ng-show="vm.loadingPrices" class="progress">
+      <div class="indeterminate"></div>
+    </div>
 
+    <forms class="row" id="precio-auto-form">
+      <section class="col m6">
+        <p class="range-field">
+          <label class="range-label" for="cuotamensual">Cuota mensual maxima</label>
+          <input type="range" id="cuotamensual" min="0" max="{{ vm.maxRate }}" />
+        </p>
+      </section>
+      <section class="col m6">
+        <p class="range-field">
+          <label class="range-label" for="valormaximo">Valor maximo</label>
+          <input type="range" id="valormaximo" min="0" max="{{ vm.maxValue }}" />
+        </p>
+      </section>
+    </form>
+  </section>
 
-<section ng-show="vm.filter.versions.length >= 1" class="row" id="precio-auto">
+  <section
+    ng-show="vm.filter.versions.length >= 1"
+  >
+    <h5>
+      <a ng-click="vm.nextPage()">Elegir versiones y presupuestos ></a>
+    </h5>
+  </section>
 
-  <p class="flow-text">El tipo de auto que te gustaria tener:</p>
-  <div ng-show="vm.loadingPrices" class="progress">
-    <div class="indeterminate"></div>
-  </div>
-
-  <forms class="row" id="precio-auto-form">
-    <section class="col m6">
-      <p class="range-field">
-        <label class="range-label" for="cuotamensual">Cuota mensual maxima</label>
-        <input type="range" id="cuotamensual" min="0" max="{{ vm.maxRate }}" />
-      </p>
-    </section>
-    <section class="col m6">
-      <p class="range-field">
-        <label class="range-label" for="valormaximo">Valor maximo</label>
-        <input type="range" id="valormaximo" min="0" max="{{ vm.maxValue }}" />
-      </p>
-    </section>
-  </form>
-
-</section>
-
+</div>
 <h1>{{ vm.maxRate }}</h1>

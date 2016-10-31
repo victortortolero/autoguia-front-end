@@ -20,6 +20,22 @@ function utilities() {
     }
   }
 
+  this.toggleObjectSelection = function(obj, property, array) {
+    var index = arrayObjectIndexOf(array, obj[property], property);
+    if (index > -1) {
+      array.splice(index, 1);
+    } else {
+      array.push(obj);
+    }
+  }
+
+  function arrayObjectIndexOf (myArray, searchTerm, property) {
+    for(var i = 0, len = myArray.length; i < len; i++) {
+      if (myArray[i][property] === searchTerm) return i;
+    }
+    return -1;
+  }
+
   this.gridifyItems = function(array, width, height, start) {
     for (var i = start || 0; i < array.length; i++) {
       var item = array[i];
@@ -29,7 +45,7 @@ function utilities() {
         y: Math.floor(id / 3) * height,
       };
       array[i].grid = grid;
-      console.log(`(${id}) - (${grid.x}, ${grid.y})`)
+      // console.log(`(${id}) - (${grid.x}, ${grid.y})`)
     }
   }
 }
