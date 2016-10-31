@@ -4,12 +4,12 @@
   margin-left: 20px;
 }
 
-#marca-auto-form {
-  display: flex;
+.collection-header {
+  padding: 0 !important;
 }
 
 .img-checkbox {
-  display:none;
+  display: none;
 }
 
 .img-checkbox + label {
@@ -24,41 +24,27 @@
   padding: 0 0 0 0px;
 }
 
-.responsive-image {
-  max-width: 100%;
+.brand-img {
+  max-width: 100px;
 }
 
-.grid {
+.range-label {
+  font-size: 1.3rem;
+}
+
+
+/* infinite scroll demo */
+.scroller-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.cell img {
-  display: block;
-}
-
-
-@media screen and (min-width: 600px) {
-  .cell {
-    margin-bottom: 4px;
-    width: calc(100% / 3 - 2.66px);
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  .cell {
-    width: calc(25% - 3px);
-  }
-}
-
-img {
-  border: none;
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  display: block;
-  background: #ccc;
-  transition: transform .2s ease-in-out;
+.item {
+  width: calc(100% / 3 - 10px);
+  text-align: center;
+  font-size: 6em;
+  margin-top: 0;
+  margin-bottom: 10px;
 }

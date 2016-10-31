@@ -32,6 +32,10 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/materialize/bin/materialize.js',
       'bower_components/ngstorage/ngStorage.js',
+      'bower_components/lodash/lodash.js',
+      'bower_components/jquery-ui/jquery-ui.js',
+      'bower_components/gridstack/dist/gridstack.js',
+      'bower_components/ng-infinite-scroll-npm-is-better-than-bower/build/ng-infinite-scroll.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

@@ -1,0 +1,12 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "name": "MRW 2k17",
+      "marca": "MRW",
+      "modelo": "xyz",
+      "año": "2017",
+      "nivelDeContaminacion": 2
+    }
+  ]
+}

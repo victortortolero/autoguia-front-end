@@ -1,6 +1,9 @@
 {
   "brands": [
-    {"name": "Audi", "imageUrl": "path/to/img"}
-    {"name": "Honda", "imageUrl": "path/to/img"}
+    {"name": "Audi", "imageUrl": "http://placehold.it/400x400"},
+    {"name": "Honda", "imageUrl": "http://placehold.it/400x400"},
+    {"name": "Toyota", "imageUrl": "http://placehold.it/400x400"},
+    {"name": "Ford", "imageUrl": "http://placehold.it/400x400"},
+    {"name": "Chevrolet", "imageUrl": "http://placehold.it/400x400"}
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "prices": {
+    "maxRate": 2000,
+    "maxValue": 100000
+  }
+}

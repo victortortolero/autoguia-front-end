@@ -10,8 +10,10 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
+    <link rel="stylesheet" href="bower_components/gridstack/dist/gridstack.css" />
     <!-- endbower -->
     <!-- endbuild -->
+    <link rel="stylesheet" href="bower_components/gridstack/dist/gridstack.min.css">
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -25,12 +27,11 @@
     <div class="header">
       <div class="navbar-fixed">
         <nav>
-          <div class="nav-wrapper">
+          <div class="nav-wrapper container">            
             <a href="#!" class="brand-logo">Logo</a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="sass.html">Sass</a></li>
-              <li><a href="badges.html">Components</a></li>
-            </ul>
+            <div ng-show="loadingBar" class="progress right">
+              <div class="indeterminate"></div>
+            </div>
           </div>
         </nav>
       </div>
@@ -73,14 +74,24 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/materialize/bin/materialize.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/gridstack/dist/gridstack.js"></script>
+    <script src="bower_components/ng-infinite-scroll-npm-is-better-than-bower/build/ng-infinite-scroll.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/type.js"></script>
         <script src="scripts/filters/capitalize.js"></script>
+        <script src="scripts/services/autoguiaservice.js"></script>
+        <script src="scripts/services/userdataservice.js"></script>
+        <script src="scripts/controllers/version.js"></script>
+        <script src="scripts/controllers/cars.js"></script>
+        <script src="scripts/services/utilitiesservice.js"></script>
+        <script src="scripts/services/loadingbarservice.js"></script>
         <!-- endbuild -->
+        <script src="scripts/controllers/scrolldemo.js"></script>
 </body>
 </html>

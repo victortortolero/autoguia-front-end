@@ -1,0 +1,8 @@
+{
+  "versions": [
+    {"name": "Estandar"},
+    {"name": "Deportivo"},
+    {"name": "Limitada"},
+    {"name": "Full"}
+  ]
+}

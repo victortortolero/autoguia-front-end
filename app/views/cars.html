@@ -1,0 +1,59 @@
+<div class="row">
+
+  <div class="col s12" infinite-scroll="vm.fetchCars()" infinite-scroll-distance="0.1">
+    <section class="row grid-stack" >
+      <section
+        class="col m4 s12 grid-stack-item"
+        ng-repeat="item in vm.items"
+        data-gs-x="{{ item.grid.x }}" data-gs-y="{{ item.grid.y }}"
+        data-gs-width="{{ vm.gridWidth }}" data-gs-height="{{ vm.gridHeight }}"
+      >
+        <ul class="collection with-header z-depth-1 hoverable grid-stack-item-content">
+          <li class="collection-header">
+            <img class="responsive-img" src="http://placehold.it/800x600" alt="placeholder">
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle">time_to_leave</i>
+            <span class="title">Marca</span>
+            <p>Modelo <br>
+               Año {{vm.fetchingCars}}
+            </p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle red">star</i>
+            <span class="title">U.S. News Scores</span>
+            <p>8/10 pt</p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle red">play_arrow</i>
+            <span class="title">Nivel de contaminación</span>
+            <p>8/10 pt</p>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- <div ng-show="vm.fetchingCars">
+      <h2 class="center-align">Loading more cars....</h2>
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+
+  <div
+
+  ></div>
+
+</div>
