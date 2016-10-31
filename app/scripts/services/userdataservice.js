@@ -46,5 +46,18 @@ angular.module('autoguiaFrontEndApp')
       return $storage.user.filters[$storage.user.filters.length - 1];
     }
 
+    /**
+     * Validates step 1 filters.
+     * Checks if the user at least has 1 type and 1 brand.
+     *
+     * @return Bool
+     */
+    service.validateStep1 = function() {
+      var currentFilter = $storage.user.filters[$storage.user.filters.length - 1];
+      return
+        currentFilter.types.length >= 1 &&
+        currentFilter.brands.length >= 1;
+    }
+
     return service;
   });

@@ -13,9 +13,17 @@ angular.module('autoguiaFrontEndApp')
     var vm = this;
     vm.items = [];
 
+    vm.options = {
+      cellHeight: 70,
+      verticalMargin: 15,
+      disableResize: true,
+      animate: true,
+    };
+
     vm.gridWidth = 4;
     vm.gridHeight = 6;
     vm.fetchingCars = false;
+    vm.$gridStack = null;
 
     var gridifyItems = UtilitiesService.gridifyItems;
 
@@ -41,9 +49,14 @@ angular.module('autoguiaFrontEndApp')
           vm.items.push({
             id: lastItemId + i,
           });
+          // vm.$gridStack.addWidget(
+          //   $('.selectable-element'), 0, 0, 0, 0, true
+          // );
         }
         // console.log(vm.items);
         gridifyItems(vm.items, vm.gridWidth, vm.gridHeight, initialLength);
+        vm.$gridStack.batchUpdate();
+        vm.$gridStack.commit();
         LoadingBarService.loading(false);
       }, 2000);
     }
@@ -59,9 +72,21 @@ angular.module('autoguiaFrontEndApp')
     function initGridStack() {
       var options = {
         cellHeight: 68,
-        verticalMargin: 15
+        verticalMargin: 15,
+        disableResize: true,
+        animate: true,
       };
-      $('.grid-stack').gridstack(options);
+      var grid = $('.grid-stack');
+      grid.gridstack(options);
+      vm.$gridStack = grid.data('gridstack');
+      console.log("init")
+
+      // vm.$gridStack.on('added', function(event, items) {
+      //   for (var i = 0; i < items.length; i++) {
+      //     console.log('item added');
+      //     console.log(items[i]);
+      //   }
+      // });
     }
 
   });

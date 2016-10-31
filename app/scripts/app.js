@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngStorage',
-    'infinite-scroll'
+    'infinite-scroll',
+    'gridstack-angular'
   ])
   .config(function ($routeProvider, $localStorageProvider) {
     $routeProvider
