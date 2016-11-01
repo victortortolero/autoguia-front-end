@@ -28,7 +28,7 @@ angular.module('autoguiaFrontEndApp')
       return $http.get(url + "prices.json");
     }
 
-    service.cars = function(query = {}) {
+    service.cars = function(query) {
       return $http.get(url + "cars.json")
     }
 
