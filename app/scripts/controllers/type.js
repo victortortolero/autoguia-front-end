@@ -9,8 +9,7 @@
  */
 angular.module('autoguiaFrontEndApp')
   .controller('TypesController',
-  function($scope, $timeout, $window, $location, autoGuiaService, userDataService, UtilitiesService, LoadingBarService) {
-
+  function($scope, $timeout, $window, $location, autoGuiaService, userDataService, UtilitiesService, LoadingBarService, GoogleGeolocationService) {
     var vm = this;
 
     vm.types = [];

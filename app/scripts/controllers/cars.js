@@ -9,7 +9,7 @@
  */
 angular.module('autoguiaFrontEndApp')
   .controller('CarsCtrl',
-  function ($document, $rootScope, $timeout, $window, $geolocation,
+  function ($document, $rootScope, $timeout, $window, GoogleGeolocationService,
       LoadingBarService, UtilitiesService, userDataService, $location) {
     validate();
 
@@ -66,12 +66,12 @@ angular.module('autoguiaFrontEndApp')
     }
 
     vm.getOffers = function() {
-      $geolocation.getCurrentPosition({
-        timeout: 60000
-      }).then(function(position) {
+      GoogleGeolocationService.getPosition()
+      .then(function(res) {
+        var location = res.data.location;
         vm.user.location = {};
-        vm.user.location.latitude = position.coords.latitude;
-        vm.user.location.longitude = position.coords.longitude;
+        vm.user.location.latitude = location.lat;
+        vm.user.location.longitude = location.lng;
         userDataService.saveFilter(vm.filter);
         userDataService.saveUserInfo(vm.user);
         vm.nextPage();
