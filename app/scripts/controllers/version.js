@@ -22,8 +22,8 @@ angular.module('autoguiaFrontEndApp')
     vm.loadingVersions = true;
     vm.loadingPrices = true;
 
-    vm.maxRate = 100;
-    vm.maxValue = 100;
+    vm.maxRate = 2000;
+    vm.maxValue = 12000;
 
 
     activate();

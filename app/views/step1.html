@@ -38,33 +38,25 @@
       <section ng-show="!vm.loadingBrands">
         <forms class="row" id="marca-auto-form">
           <!-- <i class="material-icons">label</i> This is text -->
-          <span class="col m3 s12" ng-repeat="brand in vm.brands">
-            <input
-              type='checkbox'
-              id="{{ brand.name | lowercase }}"
-              ng-checked="vm.filter.brands.indexOf(brand.name) > -1"
-              ng-click="vm.toggleSelection(brand.name, vm.filter.brands)"
-              id="thing"
-            />
-            <label for="{{ brand.name | lowercase }}">
-              <img class="brand-img responsive-img" src="http://placehold.it/400x400" alt="">
-            </label>
+          <span class="col m3 s12 car-img-container" ng-repeat="brand in vm.brands">
+            <img class="responsive-img" src="http://placehold.it/400x400" alt="">
+            <p>
+              <input
+                type="checkbox"
+                id="{{ brand.name | lowercase }}"
+                ng-checked="vm.filter.brands.indexOf(brand.name) > -1"
+                ng-click="vm.toggleSelection(brand.name, vm.filter.brands)"
+              />
+              <label for="{{ brand.name | lowercase }}"></label>
+            </p>
           </span>
         </form>
       </section>
     </section>
 
-    <h3>
-      {{ vm.filter.types }}
-    </h3>
-    <h3>
-      {{ vm.filter.brands }}
-    </h3>
-
     <section ng-show="vm.filter.brands.length >= 1">
       <h5>
         <a ng-click="vm.nextPage()">Elegir versiones y presupuestos ></a>
-        <button ng-click="vm.nextPage()">asd</button>
       </h5>
     </section>
 

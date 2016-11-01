@@ -1,5 +1,5 @@
 <div class="row">
-
+  <div class="col m6 s12">
   <section class="row" id="version-auto">
     <p class="flow-text">El tipo de auto que te gustaria tener:</p>
     <div ng-show="vm.loadingVersions" class="progress">
@@ -20,10 +20,8 @@
     </form>
   </section>
 
-  <h3>{{ vm.filter.versions }}</h3>
-
   <section ng-show="vm.filter.versions.length >= 1" class="row" id="precio-auto">
-    <p class="flow-text">El tipo de auto que te gustaria tener:</p>
+    <p class="flow-text">Posibilidades economicas:</p>
     <div ng-show="vm.loadingPrices" class="progress">
       <div class="indeterminate"></div>
     </div>
@@ -32,25 +30,28 @@
       <section class="col m6">
         <p class="range-field">
           <label class="range-label" for="cuotamensual">Cuota mensual maxima</label>
-          <input type="range" id="cuotamensual" min="0" max="{{ vm.maxRate }}" />
+          <input ng-model="vm.filter.maxRate" type="range" id="cuotamensual" min="0" max="2000" />
         </p>
       </section>
       <section class="col m6">
         <p class="range-field">
           <label class="range-label" for="valormaximo">Valor maximo</label>
-          <input type="range" id="valormaximo" min="0" max="{{ vm.maxValue }}" />
+          <input ng-model="vm.filter.maxValue" type="range" id="valormaximo" min="0" max="120000" />
         </p>
       </section>
     </form>
   </section>
 
   <section
-    ng-show="vm.filter.versions.length >= 1"
+    ng-show="vm.filter.versions.length >= 1 && vm.filter.maxRate > 1 && vm.filter.maxValue > 1"
   >
     <h5>
       <a ng-click="vm.nextPage()">Elegir versiones y presupuestos ></a>
     </h5>
   </section>
+  </div>
 
+  <aside class="col m5 offset-m1">
+    <img class="responsive-img" src="http://placehold.it/1920x1080" alt="placeholder">
+  </aside>
 </div>
-<h1>{{ vm.maxRate }}</h1>

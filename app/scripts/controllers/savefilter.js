@@ -8,10 +8,11 @@
  * Controller of the autoguiaFrontEndApp
  */
 angular.module('autoguiaFrontEndApp')
-  .controller('SavefilterCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('SavefilterCtrl', function ($location, userDataService) {
+    var vm = this;
+
+    vm.reset = function() {
+      userDataService.reset();
+      $location.path('/');
+    }
   });

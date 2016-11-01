@@ -21,7 +21,7 @@ angular.module('autoguiaFrontEndApp')
     vm.user = {};
 
     vm.options = {
-      cellHeight: 70,
+      cellHeight: 83,
       verticalMargin: 15,
       disableResize: true,
       animate: true,
@@ -97,7 +97,7 @@ angular.module('autoguiaFrontEndApp')
     }
 
     vm.nextPage = function() {
-      // $location.path('/thanks');
+      $location.path('/thanks');
     }
 
   });

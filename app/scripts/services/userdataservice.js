@@ -21,6 +21,10 @@ angular.module('autoguiaFrontEndApp')
       return $storage.user;
     }
 
+    service.reset = function() {
+      $storage.$reset();
+    }
+
     service.newUserFilter = function() {
       var filter = {
         types: [],

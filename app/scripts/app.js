@@ -43,7 +43,7 @@ angular
       .when('/thanks', {
         templateUrl: 'views/savefilter.html',
         controller: 'SavefilterCtrl',
-        controllerAs: 'saveFilter'
+        controllerAs: 'vm'
       })
       .otherwise({
         redirectTo: '/'
