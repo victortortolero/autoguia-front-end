@@ -50,6 +50,8 @@ angular.module('autoguiaFrontEndApp')
       LoadingBarService.loading(true);
       autoGuiaService.getTypes()
       .then(function(res) {
+        console.log("Got data");
+        console.log(res);
         var data = res.data;
         vm.loadingTypes = false;
         LoadingBarService.loading(false);
