@@ -8,12 +8,13 @@
  * Service in the autoguiaFrontEndApp.
  */
 angular.module('autoguiaFrontEndApp')
-  .service('autoGuiaService', function ($http) {
+  .service('autoGuiaService', function ($http, BASE_URL) {
     var service = {};
-    var url = "data/"
+    var path = "data"
+    var url = 'data/';
 
     service.getTypes = function() {
-      return $http.get(url + "types.json");
+      return $http.get(BASE_URL + "tipos_auto/all");
     }
 
     service.getBrands = function(types) {

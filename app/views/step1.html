@@ -2,10 +2,9 @@
 
 <div class="row section">
 
-  <div class="col m6">
+  <div class="col m6 s12">
 
     <section class="row section" id="tipo-auto">
-
       <p class="flow-text">El tipo de auto que te gustaria tener:</p>
       <div ng-show="vm.loadingTypes" class="progress">
         <div class="indeterminate"></div>
@@ -23,7 +22,6 @@
           <label for="{{ type.name | lowercase }}">{{ type.name | capitalize }}</label>
         </span>
       </form>
-
     </section>
 
     <div class="divider"></div>
@@ -62,7 +60,7 @@
 
   </div>
 
-  <aside class="col m5 offset-m1">
+  <aside class="col m5 offset-m1 s12">
     <img class="responsive-img" src="http://placehold.it/1920x1080" alt="placeholder">
   </aside>
 

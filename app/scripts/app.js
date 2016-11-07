@@ -23,6 +23,10 @@ angular
     'gridstack-angular',
     'ngGeolocation'
   ])
+  .constant(
+    'BASE_URL',
+    'http://jrojas.dhdinc.info/autoguia-api/public/index.php/'
+  )
   .config(function ($routeProvider, $localStorageProvider) {
     $routeProvider
       .when('/', {

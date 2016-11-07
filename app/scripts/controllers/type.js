@@ -9,7 +9,8 @@
  */
 angular.module('autoguiaFrontEndApp')
   .controller('TypesController',
-  function($scope, $timeout, $window, $location, autoGuiaService, userDataService, UtilitiesService, LoadingBarService, GoogleGeolocationService) {
+  function($scope, $timeout, $window, $location, autoGuiaService,
+    userDataService, UtilitiesService, LoadingBarService, GoogleGeolocationService) {
     var vm = this;
 
     vm.types = [];
@@ -50,11 +51,9 @@ angular.module('autoguiaFrontEndApp')
       autoGuiaService.getTypes()
       .then(function(res) {
         var data = res.data;
-        $timeout(function() {
-          vm.loadingTypes = false;
-          LoadingBarService.loading(false);
-          vm.types = data.types;
-        }, 1000);
+        vm.loadingTypes = false;
+        LoadingBarService.loading(false);
+        vm.types = data.types;
       });
     }
 
