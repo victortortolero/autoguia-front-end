@@ -27,7 +27,10 @@ angular.module('autoguiaFrontEndApp')
 
     $scope.$watch(function() {
       return vm.filter.types.length;
-    }, function() {
+    }, function(currentLength) {
+      if (currentLength < 1) {
+        return;
+      }
       updateBrands();
       vm.filter.brands = [];
     });
@@ -36,27 +39,26 @@ angular.module('autoguiaFrontEndApp')
       LoadingBarService.loading(true);
       vm.loadingBrands = true;
       autoGuiaService.getBrands(vm.filter.types)
-      .then(function(res) {
-        var data = res.data;
-        $timeout(function() {
-          vm.brands = data.brands;
+        .then(function(res) {
+          console.log("success");
+          var data = res.data;
+          console.log(data);
+          vm.brands = data;
           vm.loadingBrands = false;
           LoadingBarService.loading(false);
-        }, 1500);
-      });
+        });
     }
 
     function activate() {
       LoadingBarService.loading(true);
       autoGuiaService.getTypes()
-      .then(function(res) {
-        console.log("Got data");
-        console.log(res);
-        var data = res.data;
-        vm.loadingTypes = false;
-        LoadingBarService.loading(false);
-        vm.types = data.types;
-      });
+        .then(function(res) {
+          var data = res.data;
+          vm.loadingTypes = false;
+          LoadingBarService.loading(false);
+          vm.types = data;
+          // console.log(data);
+        });
     }
 
     vm.nextPage = function() {

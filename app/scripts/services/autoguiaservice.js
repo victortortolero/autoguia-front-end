@@ -18,7 +18,13 @@ angular.module('autoguiaFrontEndApp')
     }
 
     service.getBrands = function(types) {
-      return $http.get(url + "brands.json");
+      return $http({
+        url: BASE_URL + "tipo_auto/marcas",
+        method: "POST",
+        data: {
+          id_tipo_array: types,
+        }
+      });
     }
 
     service.versions = function() {
@@ -30,7 +36,14 @@ angular.module('autoguiaFrontEndApp')
     }
 
     service.cars = function(query) {
-      return $http.get(url + "cars.json")
+      return $http.get(url + "cars.json");
+    }
+
+    service.saveUser = function(data) {
+      return $http({
+        url: BASE_URL + "guardar_user",
+        method: "POST",
+      });
     }
 
     return service;

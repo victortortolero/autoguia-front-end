@@ -12,7 +12,6 @@
   display: none;
 }
 
-
 .img-checkbox + label {
   background: #999;
   /*display:inline-block;*/
@@ -34,6 +33,9 @@
 */
 .car-img-container {
   position: relative;
+  border: 2px dotted black;
+  border-radius: 5px;
+  margin: 4px;
 }
 
 .car-img-container img {
