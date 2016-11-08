@@ -27,8 +27,16 @@ angular.module('autoguiaFrontEndApp')
       });
     }
 
-    service.versions = function() {
-      return $http.get(url + "versions.json");
+    service.versions = function(brands) {
+      console.log("sending: ");
+      console.log(brands)
+      return $http({
+        url: BASE_URL + "marcas/modelos",
+        method: "POST",
+        data: {
+          id_marcas_array: brands,
+        }
+      });
     }
 
     service.prices = function() {

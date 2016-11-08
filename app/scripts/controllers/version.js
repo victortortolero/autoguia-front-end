@@ -9,9 +9,12 @@
  */
 angular.module('autoguiaFrontEndApp')
   .controller('VersionCtrl',
-  function ($scope, $timeout, $window, $document, $location, autoGuiaService, userDataService, UtilitiesService, LoadingBarService) {
-    validate();
+  function ($scope, $timeout, $window, $document, $location, autoGuiaService,
+    userDataService, UtilitiesService, LoadingBarService, $rootScope) {
 
+    $rootScope.currentPath = $location.path();
+    console.log($rootScope.currentPath);
+    validate();
     var vm = this;
 
     vm.versions = [];
@@ -33,14 +36,13 @@ angular.module('autoguiaFrontEndApp')
     function activate() {
       vm.loadingVersions = true;
       LoadingBarService.loading(true);
-      autoGuiaService.versions()
-      .then(function(res) {
-        var data = res.data;
-        $timeout(function() {
+      autoGuiaService.versions(vm.filter.brands)
+        .then(function(res) {
+          var data = res.data;
           vm.loadingVersions = false;
-          vm.versions = res.data.versions;
-        }, 1000);
-      });
+          vm.versions = data;
+          console.log(res);
+        });
 
       LoadingBarService.loading(true);
       vm.loadingPrices = true;

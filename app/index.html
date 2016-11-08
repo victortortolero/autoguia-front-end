@@ -11,6 +11,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
     <link rel="stylesheet" href="bower_components/gridstack/dist/gridstack.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <link rel="stylesheet" href="bower_components/gridstack/dist/gridstack.min.css">
@@ -31,16 +32,16 @@
             <a href="#!" class="left brand-logo">Logo</a>
 
             <a
-              ng-show="selectedCars.length >= 1"
+              ng-show="selectedCars.length >= 1 && currentPath === '/step-3'"
               class="btn waves-effect waves-light blue right"
               data-target="form-modal"
             >
               Obtener Ofertas!!
             </a>
 
-            <div ng-show="loadingBar" class="progress right">
+            <!-- <div ng-show="loadingBar" class="progress right">
               <div class="indeterminate"></div>
-            </div>
+            </div> -->
           </div>
         </nav>
       </div>
@@ -86,6 +87,7 @@
     <script src="bower_components/ng-infinite-scroll-npm-is-better-than-bower/build/ng-infinite-scroll.js"></script>
     <script src="bower_components/gridstack-angular/dist/gridstack-angular.min.js"></script>
     <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

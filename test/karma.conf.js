@@ -38,6 +38,7 @@ module.exports = function(config) {
       'bower_components/ng-infinite-scroll-npm-is-better-than-bower/build/ng-infinite-scroll.js',
       'bower_components/gridstack-angular/dist/gridstack-angular.min.js',
       'bower_components/ngGeolocation/ngGeolocation.js',
+      'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

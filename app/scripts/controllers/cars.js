@@ -11,6 +11,8 @@ angular.module('autoguiaFrontEndApp')
   .controller('CarsCtrl',
   function ($document, $rootScope, $timeout, $window, GoogleGeolocationService,
       LoadingBarService, UtilitiesService, userDataService, $location) {
+
+    $rootScope.currentPath = $location.path();
     validate();
 
     var vm = this;

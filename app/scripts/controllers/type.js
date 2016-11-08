@@ -9,8 +9,10 @@
  */
 angular.module('autoguiaFrontEndApp')
   .controller('TypesController',
-  function($scope, $timeout, $window, $location, autoGuiaService,
+  function($scope, $timeout, $window, $location, autoGuiaService, $rootScope,
     userDataService, UtilitiesService, LoadingBarService, GoogleGeolocationService) {
+
+    $rootScope.currentPath = $location.path();
     var vm = this;
 
     vm.types = [];

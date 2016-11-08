@@ -21,13 +21,14 @@ angular
     'ngStorage',
     'infinite-scroll',
     'gridstack-angular',
-    'ngGeolocation'
+    'ngGeolocation',
+    'angular-loading-bar'
   ])
   .constant(
     'BASE_URL',
     'http://jrojas.dhdinc.info/autoguia-api/public/index.php/'
   )
-  .config(function ($routeProvider, $localStorageProvider) {
+  .config(function ($routeProvider, $localStorageProvider, cfpLoadingBarProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/step1.html',
@@ -52,7 +53,9 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
     $localStorageProvider.setKeyPrefix('autoguia-v1-');
+    cfpLoadingBarProvider.includeSpinner = false;
   })
   .run(function(userDataService, LoadingBarService) {
     userDataService.init();
