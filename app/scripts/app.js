@@ -57,7 +57,8 @@ angular
     $localStorageProvider.setKeyPrefix('autoguia-v1-');
     cfpLoadingBarProvider.includeSpinner = false;
   })
-  .run(function(userDataService, LoadingBarService) {
+  .run(function(userDataService, LoadingBarService, $rootScope) {
     userDataService.init();
     LoadingBarService.loading(false);
+    $rootScope.currentPath = $location.path();
   });
