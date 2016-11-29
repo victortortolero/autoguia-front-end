@@ -26,7 +26,7 @@ angular.module('autoguiaFrontEndApp')
     vm.user = {};
 
     vm.options = {
-      cellHeight: 90,
+      cellHeight: 93,
       verticalMargin: 15,
       disableResize: true,
       animate: true,
