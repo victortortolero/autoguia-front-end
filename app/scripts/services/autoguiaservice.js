@@ -14,27 +14,26 @@ angular.module('autoguiaFrontEndApp')
     var url = 'data/';
 
     service.getTypes = function() {
-      return $http.get(BASE_URL + "tipos_auto/all");
+      return $http.post(BASE_URL + "tipos_auto/exists");
     }
 
     service.getBrands = function(types) {
       return $http({
-        url: BASE_URL + "tipo_auto/marcas",
+        url: BASE_URL + "tipos_auto/exists/marcas",
         method: "POST",
         data: {
-          id_tipo_array: types,
+          array_id_tipo: types,
         }
       });
     }
 
-    service.versions = function(brands) {
-      console.log("sending: ");
-      console.log(brands)
+    service.versions = function(types, brands) {
       return $http({
-        url: BASE_URL + "marcas/modelos",
+        url: BASE_URL + "subtipos_auto/exists/tipos_auto/marcas",
         method: "POST",
         data: {
-          id_marcas_array: brands,
+          array_id_tipo: types,
+          array_id_marca: brands,
         }
       });
     }
@@ -43,8 +42,18 @@ angular.module('autoguiaFrontEndApp')
       return $http.get(url + "prices.json");
     }
 
-    service.cars = function(query) {
-      return $http.get(url + "cars.json");
+    service.cars = function(filtro) {
+      return $http({
+        url: BASE_URL + "autos/filter/tipos_auto/subtipos_auto/marcas",
+        method: 'POST',
+        data: {
+          array_id_tipo: filtro.types,
+          array_id_marca: filtro.brands,
+          array_id_subtipo: filtro.versions,
+          valor_maximo: filtro.maxValue,
+          cuota_mensual_maxima: filtro.maxRate
+        }
+      });
     }
 
     service.saveUser = function(data) {

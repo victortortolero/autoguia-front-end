@@ -14,5 +14,5 @@ angular.module('autoguiaFrontEndApp')
     vm.reset = function() {
       userDataService.reset();
       $location.path('/');
-    }
+    };
   });

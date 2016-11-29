@@ -58,6 +58,109 @@
   color: white;
   font-size: 24px;
   font-weight: bold;
+  left: 8px;
+  top: -20px;
+}
+
+h3.flow-text.section {
+  margin-left: -13px;
+  margin-right: -13px;
+}
+
+.car-img-border:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.47);
+}
+
+
+
+.car-img-border {
+  border: none;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.47);
+  border-radius: 0px;
+  padding: 0px !important;
+  text-align: center;
+  padding-bottom: 5px !important;
+  transition: 0.5s;
+}
+
+section h5 a:hover {
+  background: #51c5ba;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.32);
+}
+
+section h5 a {
+  background: #28a79b;
+  padding: 10px;
+  color: white;
+  border-radius: 3px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.flow-text {
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+body {
+  background: #f3f3f3;
+}
+
+nav a.btn.blue.right {
+  position: fixed;
+  bottom: 20px;
   right: 10px;
-  top: 0;
+  font-size: 20px;
+  height: auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+form#offer-form .input-field {
+  background: white;
+  /* padding-top: 50px; */
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+#tipo-auto, #version-auto, #marca-auto, #precio-auto {
+  padding-top: 10px;
+  background: white;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+section h5 a {
+  background: #28a79b;
+  padding: 10px;
+  color: white;
+  border-radius: 3px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+  margin-left: -10px;
+  margin-top: 30px;
+  display: block;
+  margin-right: -10px;
+}
+
+#offer-form button {
+    background: #2196f3;
+    color: white;
+}
+
+#offer-form .flow-text {
+    font-weight: 700;
+    background: #e8e8e8;
+    padding: 5px;
+}
+
+.side-image {
+  box-shadow: 0px 0px 10px 0px #888888;
+  border-radius: 2px;
 }

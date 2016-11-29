@@ -8,12 +8,12 @@
  * Service in the autoguiaFrontEndApp.
  */
 angular.module('autoguiaFrontEndApp')
-  .service('userDataService', function($localStorage) {
+  .service('userDataService', function($localStorage, CURRENT_VERSION) {
     var service = {};
     var $storage = $localStorage;
 
     service.init = function() {
-      // $storage.$reset();
+      service.validateVersion();
       if (typeof $storage.user === 'undefined') {
         $storage.$reset();
         createUser();
@@ -35,11 +35,7 @@ angular.module('autoguiaFrontEndApp')
     }
 
     service.saveFilter = function(filter) {
-      if ($storage.user.filters.length < 1) {
-        $storage.currentFilterIndex = $storage.user.filters.push(filter) - 1;
-      } else {
-        $storage.user.filters[0] = filter;
-      }
+      $storage.user.filters[0] = angular.extend($storage.user.filters[0], filter);
     }
 
     service.saveUserInfo = function(user) {
@@ -81,13 +77,21 @@ angular.module('autoguiaFrontEndApp')
       return $storage.user.filters.length >= 1;
     }
 
+    service.validateVersion = function() {
+      for (var prop in localStorage) {
+        if (prop.search('autoguia') !== -1 && prop.search(CURRENT_VERSION) === -1) {
+          localStorage.removeItem(prop);
+        }
+      }
+    }
+
     function createUser() {
       // $storage.currentFilterIndex = -1;
       $storage.user = angular.extend({}, initialUser);
     }
 
     var initialUser = {
-      filters: [],
+      filters: [{}],
       info: {
         name: '',
         lastName: '',

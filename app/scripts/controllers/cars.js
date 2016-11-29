@@ -10,20 +10,23 @@
 angular.module('autoguiaFrontEndApp')
   .controller('CarsCtrl',
   function ($document, $rootScope, $timeout, $window, GoogleGeolocationService,
-      LoadingBarService, UtilitiesService, userDataService, $location) {
+      LoadingBarService, UtilitiesService, userDataService, $location, autoGuiaService) {
 
     $rootScope.currentPath = $location.path();
     validate();
 
     var vm = this;
     vm.items = [];
+    vm.cars = [];
+    vm.currentCar = 0;
     $rootScope.selectedCars = vm.selectedCars = [];
 
     vm.filter = userDataService.currentFilter();
+    console.log(vm.filter);
     vm.user = {};
 
     vm.options = {
-      cellHeight: 83,
+      cellHeight: 90,
       verticalMargin: 15,
       disableResize: true,
       animate: true,
@@ -36,48 +39,51 @@ angular.module('autoguiaFrontEndApp')
     var gridifyItems = UtilitiesService.gridifyItems;
     vm.toggleObjectSelection = UtilitiesService.toggleObjectSelection;
 
-    for (var i = 0; i < 9; i++) {
-      vm.items.push({
-        id: i,
-      });
-    }
-
     activate();
 
     vm.fetchCars = function() {
+      if (vm.cars.length >= 1 && vm.items.length == vm.cars.length) {
+        return;
+      }
       if (LoadingBarService.isLoading()) {
         return;
       }
       LoadingBarService.loading(true);
       $timeout(function() {
         var initialLength = vm.items.length;
-        var lastItemId = vm.items[vm.items.length - 1].id;
-        for (var i = 1; i <= 9; i++) {
-          vm.items.push({
-            id: lastItemId + i,
-          });
-        }
-        // console.log(vm.items);
-        gridifyItems(vm.items, vm.gridWidth, vm.gridHeight, initialLength);
+        getNCars(5);
+        gridifyItems(vm.items, vm.gridWidth, vm.gridHeight, initialLength, 'id_auto');
         LoadingBarService.loading(false);
-      }, 2000);
+      }, 50);
     }
 
     function activate() {
-      gridifyItems(vm.items, vm.gridWidth, vm.gridHeight);
+      autoGuiaService.cars(vm.filter)
+        .then(function(response) {
+          vm.cars = response.data;
+          console.log(vm.cars);
+          getNCars(10);
+          gridifyItems(vm.items, vm.gridWidth, vm.gridHeight, 0, 'id_auto');
+        });
+    }
+
+    function getNCars(n) {
+      for (var i = 0; i < n && vm.currentCar < vm.cars.length; i++) {
+        vm.items.push(vm.cars[vm.currentCar++]);
+      }
     }
 
     vm.getOffers = function() {
       GoogleGeolocationService.getPosition()
-      .then(function(res) {
-        var location = res.data.location;
-        vm.user.location = {};
-        vm.user.location.latitude = location.lat;
-        vm.user.location.longitude = location.lng;
-        userDataService.saveFilter(vm.filter);
-        userDataService.saveUserInfo(vm.user);
-        vm.nextPage();
-      });
+        .then(function(res) {
+          var location = res.data.location;
+          vm.user.location = {};
+          vm.user.location.latitude = location.lat;
+          vm.user.location.longitude = location.lng;
+          userDataService.saveFilter(vm.filter);
+          userDataService.saveUserInfo(vm.user);
+          vm.nextPage();
+        });
     }
 
     $document.ready(function() {

@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col m6 s12">
   <section class="row" id="version-auto">
+
     <p class="flow-text">Modelo del auto:</p>
     <div ng-show="vm.loadingVersions" class="progress">
       <div class="indeterminate"></div>
@@ -11,13 +12,14 @@
       <span class="col m3 s4 checkbox-holder" ng-repeat="version in vm.versions">
         <input
           type="checkbox"
-          ng-checked="vm.filter.versions.indexOf(version.id_modelo) > -1"
-          ng-click="vm.toggleSelection(version.id_modelo, vm.filter.versions)"
-          id="{{ version.nombre | lowercase }}"
+          ng-checked="vm.filter.versions.indexOf(version.id_subtipo) > -1"
+          ng-click="vm.toggleSelection(version.id_subtipo, vm.filter.versions)"
+          id="{{ version.nombre_subtipo | lowercase }}"
         />
-        <label for="{{ version.nombre | lowercase }}">{{ version.nombre | capitalize }}</label>
+        <label for="{{ version.nombre_subtipo | lowercase }}">{{ version.nombre_subtipo | capitalize }}</label>
       </span>
     </form>
+
   </section>
 
   <section ng-show="vm.filter.versions.length >= 1" class="row" id="precio-auto">

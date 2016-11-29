@@ -21,35 +21,47 @@
       >
         <ul class="collection with-header z-depth-1 hoverable grid-stack-item-content">
           <li class="collection-header car-img-container">
-            <img class="responsive-img" src="http://placehold.it/800x600" alt="placeholder">
+            <img
+              class="responsive-img car-img"
+              src="{{item.img_auto || 'http://placehold.it/800x600'}}"
+              alt="placeholder"
+            >
             <p>
               <input
                 type="checkbox"
-                ng-checked="vm.filter.types.indexOf(item.name) > -1"
-                ng-click="vm.toggleObjectSelection(item, 'id', vm.selectedCars)"
-                id="{{ 'car-' + item.id }}"
+                ng-checked="vm.filter.types.indexOf(item.nombre_version) > -1"
+                ng-click="vm.toggleObjectSelection(item, 'id_auto', vm.selectedCars)"
+                id="{{ 'car-' + item.id_auto }}"
               />
-              <label for="{{ 'car-' + item.id }}"></label>
+              <label for="{{ 'car-' + item.id_auto }}"></label>
             </p>
           </li>
           <li class="collection-item avatar">
             <i class="material-icons circle">time_to_leave</i>
-            <span class="title">Marca {{item.id}}</span>
-            <p>Modelo <br>
-               Año {{vm.fetchingCars}}
-            </p>
+            <span class="title">Auto: <strong>{{item.nombre_version}}</strong></span>
+            <p>Marca: {{item.nombre_marca}}</p>
+            <p>Subtipo: {{item.nombre_subtipo}}</p>
+            <p>Año: {{item.anio_lanzamiento_auto}}</p>
             <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
           </li>
           <li class="collection-item avatar">
             <i class="material-icons circle red">star</i>
-            <span class="title">U.S. News Scores</span>
-            <p>8/10 pt</p>
+            <p>Precio: {{item.precio}}</p>
+            <p>Cuota mensual: {{item.cuota_mensual_maxima}}</p>
+            <!-- <p>Valor maximo: {{item.valor_maximo}}</p> -->
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle red">star</i>
+            <span class="title">Caracteristicas</span>
+            <p>Puertas: {{item.num_puertas}}</p>
+            <p>Velocidades: {{item.num_velocidades}}</p>
             <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
           </li>
           <li class="collection-item avatar">
             <i class="material-icons circle red">play_arrow</i>
             <span class="title">Nivel de contaminación</span>
-            <p>8/10 pt</p>
+            <p>co2: {{item.contaminacion_co2}}</p>
           </li>
         </ul>
       </section>

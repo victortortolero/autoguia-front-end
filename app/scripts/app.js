@@ -28,7 +28,11 @@ angular
     'BASE_URL',
     'http://jrojas.dhdinc.info/autoguia-api/public/index.php/'
   )
-  .config(function ($routeProvider, $localStorageProvider, cfpLoadingBarProvider) {
+  .constant(
+    'CURRENT_VERSION',
+    'V1'
+  )
+  .config(function ($routeProvider, $localStorageProvider, cfpLoadingBarProvider, CURRENT_VERSION) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/step1.html',
@@ -54,10 +58,10 @@ angular
         redirectTo: '/'
       });
 
-    $localStorageProvider.setKeyPrefix('autoguia-v1-');
+    $localStorageProvider.setKeyPrefix('autoguia-' + CURRENT_VERSION + '-');
     cfpLoadingBarProvider.includeSpinner = false;
   })
-  .run(function(userDataService, LoadingBarService, $rootScope) {
+  .run(function(userDataService, LoadingBarService, $rootScope, $location) {
     userDataService.init();
     LoadingBarService.loading(false);
     $rootScope.currentPath = $location.path();

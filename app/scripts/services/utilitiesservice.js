@@ -36,10 +36,10 @@ function utilities() {
     return -1;
   }
 
-  this.gridifyItems = function(array, width, height, start) {
+  this.gridifyItems = function(array, width, height, start, primaryKey) {
     for (var i = start || 0; i < array.length; i++) {
       var item = array[i];
-      var id = item.id;
+      var id = item[primaryKey];
       var grid = {
         x: id % 3 * width,
         y: Math.floor(id / 3) * height,

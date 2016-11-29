@@ -19,6 +19,7 @@ angular.module('autoguiaFrontEndApp')
 
     vm.versions = [];
     vm.filter = userDataService.currentFilter();
+    console.log(vm.filter);
     vm.filter.versions = [];
     vm.filter.maxRate = 0;
     vm.filter.maxValue = 0;
@@ -36,7 +37,7 @@ angular.module('autoguiaFrontEndApp')
     function activate() {
       vm.loadingVersions = true;
       LoadingBarService.loading(true);
-      autoGuiaService.versions(vm.filter.brands)
+      autoGuiaService.versions(vm.filter.types, vm.filter.brands)
         .then(function(res) {
           var data = res.data;
           vm.loadingVersions = false;
