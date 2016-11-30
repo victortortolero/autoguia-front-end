@@ -44,7 +44,7 @@ angular.module('autoguiaFrontEndApp')
 
     service.cars = function(filtro) {
       return $http({
-        url: BASE_URL + "autos/filter/tipos_auto/subtipos_auto/marcas",
+        url: BASE_URL + "autos/list/tipos_auto/subtipos_auto/marcas/other",
         method: 'POST',
         data: {
           array_id_tipo: filtro.types,
@@ -60,6 +60,29 @@ angular.module('autoguiaFrontEndApp')
       return $http({
         url: BASE_URL + "guardar_user",
         method: "POST",
+      });
+    }
+
+    service.sideCarsStep1 = function(filtro) {
+      return $http({
+        url: BASE_URL + "autos/filter/tipos_auto/marcas",
+        method: 'POST',
+        data: {
+          array_id_tipo: filtro.types,
+          array_id_marca: filtro.brands
+        }
+      });
+    }
+
+    service.sideCarsStep2 = function(filtro) {
+      return $http({
+        url: BASE_URL + "autos/filter/tipos_auto/subtipos_auto/marcas",
+        method: 'POST',
+        data: {
+          array_id_tipo: filtro.types,
+          array_id_marca: filtro.brands,
+          array_id_subtipo: filtro.versions,
+        }
       });
     }
 

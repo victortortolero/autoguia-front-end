@@ -17,6 +17,7 @@ angular.module('autoguiaFrontEndApp')
 
     vm.types = [];
     vm.brands = [];
+    vm.sideCars = [];
 
     vm.filter = userDataService.newUserFilter();
 
@@ -37,14 +38,27 @@ angular.module('autoguiaFrontEndApp')
       vm.filter.brands = [];
     });
 
+    $scope.$watch(function() {
+      return vm.filter.brands.length;
+    }, function(currentLength) {
+      if (currentLength < 1) {
+        return;
+      }
+      autoGuiaService.sideCarsStep1(vm.filter)
+        .then(function(res) {
+          return res.data;
+        })
+        .then(function(data) {
+          vm.sideCars = data;
+        });
+    });
+
     function updateBrands() {
       LoadingBarService.loading(true);
       vm.loadingBrands = true;
       autoGuiaService.getBrands(vm.filter.types)
         .then(function(res) {
-          console.log("success");
           var data = res.data;
-          console.log(data);
           vm.brands = data;
           vm.loadingBrands = false;
           LoadingBarService.loading(false);
@@ -59,7 +73,6 @@ angular.module('autoguiaFrontEndApp')
           vm.loadingTypes = false;
           LoadingBarService.loading(false);
           vm.types = data;
-          // console.log(data);
         });
     }
 

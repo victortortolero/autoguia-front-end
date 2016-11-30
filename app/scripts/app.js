@@ -65,4 +65,13 @@ angular
     userDataService.init();
     LoadingBarService.loading(false);
     $rootScope.currentPath = $location.path();
+
+    $rootScope.userLogged = function() {
+      return userDataService.validFilter();
+    };
+
+    $rootScope.currentUser = function() {
+      return userDataService.currentUser().info;
+    };
+
   });

@@ -25,9 +25,10 @@ angular.module('autoguiaFrontEndApp')
     vm.filter.maxValue = 0;
     vm.loadingVersions = true;
     vm.loadingPrices = true;
+    vm.sideCars = [];
 
-    vm.maxRate = 2000;
-    vm.maxValue = 12000;
+    vm.maxRate = 5000;
+    vm.maxValue = 200000;
 
 
     activate();
@@ -37,12 +38,21 @@ angular.module('autoguiaFrontEndApp')
     function activate() {
       vm.loadingVersions = true;
       LoadingBarService.loading(true);
+
       autoGuiaService.versions(vm.filter.types, vm.filter.brands)
         .then(function(res) {
           var data = res.data;
           vm.loadingVersions = false;
           vm.versions = data;
           console.log(res);
+        });
+
+      autoGuiaService.sideCarsStep1(vm.filter)
+        .then(function(res) {
+          return res.data;
+        })
+        .then(function(data) {
+          vm.sideCars = data;
         });
 
       LoadingBarService.loading(true);
@@ -55,6 +65,29 @@ angular.module('autoguiaFrontEndApp')
         vm.maxValue = res.data.maxValue;
       });
     }
+
+    $scope.$watch(function() {
+      return vm.filter.versions.length;
+    }, function(currentLength) {
+      if (currentLength < 1) {
+        autoGuiaService.sideCarsStep1(vm.filter)
+          .then(function(res) {
+            return res.data;
+          })
+          .then(function(data) {
+            vm.sideCars = data;
+          });
+        return;
+      }
+      autoGuiaService.sideCarsStep2(vm.filter)
+        .then(function(res) {
+          return res.data;
+        })
+        .then(function(data) {
+          vm.sideCars = data;
+          console.log(data);
+        });
+    });
 
     function validate() {
       var test = userDataService.validate() && userDataService.validateStep1();

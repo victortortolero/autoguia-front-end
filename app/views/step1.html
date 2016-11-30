@@ -67,7 +67,24 @@
   </div>
 
   <aside class="col m5 offset-m1 s12">
-    <img class="responsive-img side-image" src="http://placehold.it/1920x1080" alt="placeholder">
+    <!-- <img class="responsive-img side-image" src="http://placehold.it/1920x1080" alt="placeholder"> -->
+    <section class="row section z-depth-1" id="side-cars">
+      <h1 class="flow-text center-align" id="cantidad-autos">Autos Totales: {{vm.sideCars.length}}</h1>
+      <div class="divider"></div>
+      <div class="card col m6 s12 hoverable" ng-repeat="car in vm.sideCars">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator responsive-img" src="{{car.img_auto || 'http://placehold.it/1920x1080'}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{car.nombre_version}}<i class="material-icons right">more_vert</i></span>
+          <p>{{car.nombre_marca}}</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+          <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div>
+      </div>
+    </section>
   </aside>
 
 </div>

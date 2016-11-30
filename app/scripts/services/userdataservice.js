@@ -42,6 +42,14 @@ angular.module('autoguiaFrontEndApp')
       $storage.user.info = angular.extend($storage.user.info, user);
     }
 
+    service.validateFilter = function() {
+      $storage.user.filters[0].valid = true;
+    }
+
+    service.validFilter = function() {
+      return $storage.user.filters[0].valid;
+    }
+
     service.currentFilter = function() {
       return $storage.user.filters[0];
     }
@@ -76,7 +84,7 @@ angular.module('autoguiaFrontEndApp')
     service.validate = function() {
       return $storage.user.filters.length >= 1;
     }
-
+    
     service.validateVersion = function() {
       for (var prop in localStorage) {
         if (prop.search('autoguia') !== -1 && prop.search(CURRENT_VERSION) === -1) {
@@ -91,7 +99,9 @@ angular.module('autoguiaFrontEndApp')
     }
 
     var initialUser = {
-      filters: [{}],
+      filters: [{
+        valid: false,
+      }],
       info: {
         name: '',
         lastName: '',

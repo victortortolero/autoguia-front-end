@@ -82,6 +82,7 @@ angular.module('autoguiaFrontEndApp')
           vm.user.location.longitude = location.lng;
           userDataService.saveFilter(vm.filter);
           userDataService.saveUserInfo(vm.user);
+          userDataService.validateFilter();
           vm.nextPage();
         });
     }
