@@ -48,4 +48,22 @@ function utilities() {
       // console.log(`(${id}) - (${grid.x}, ${grid.y})`)
     }
   }
+
+  this.calculateEarthDistance = function xx(point1, point2) {
+    var R = 6371; // km
+    var dLat = toRad(point2.lat - point1.lat);
+    var dLon = toRad(point2.lon - point1.lon);
+    var lat1 = toRad(point1.lat);
+    var lat2 = toRad(point2.lat);
+
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c;
+    return d;
+  };
+
+  function toRad(value) {
+    return value * Math.PI / 180;
+  }
 }

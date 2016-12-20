@@ -8,7 +8,9 @@
  * Service in the autoguiaFrontEndApp.
  */
 angular.module('autoguiaFrontEndApp')
-  .service('userDataService', function($localStorage, CURRENT_VERSION) {
+  .service('userDataService', function(
+    $localStorage, $http, autoGuiaService, UtilitiesService, CURRENT_VERSION, BASE_URL
+  ) {
     var service = {};
     var $storage = $localStorage;
 
@@ -56,7 +58,14 @@ angular.module('autoguiaFrontEndApp')
 
     service.currentUser = function() {
       return $storage.user;
-    }
+    };
+
+    service.addCars = function(selectedCars) {
+      var cars = selectedCars.map(function(car) {
+        return car.id_auto;
+      });
+      $storage.user.cars = cars;
+    };
 
     /**
      * Validates step 1 filters.
@@ -84,14 +93,54 @@ angular.module('autoguiaFrontEndApp')
     service.validate = function() {
       return $storage.user.filters.length >= 1;
     }
-    
+
     service.validateVersion = function() {
       for (var prop in localStorage) {
         if (prop.search('autoguia') !== -1 && prop.search(CURRENT_VERSION) === -1) {
           localStorage.removeItem(prop);
         }
       }
-    }
+    };
+
+    service.saveUser = function() {
+      service.calculateClosestDealers();
+      console.log(formatUserForApi());
+      return $http.post(BASE_URL + 'user/new', formatUserForApi());
+    };
+
+    service.calculateClosestDealers = function() {
+      var user = $storage.user;
+      var location = $storage.user.info.location;
+      autoGuiaService.dealers()
+        .then(function(res) {
+          var dealers = res.data;
+
+          var distances = dealers.map(function(dealer) {
+            var distance = UtilitiesService.calculateEarthDistance(
+              {lat: location.latitude, lon: location.longitude},
+              {lat: dealer.latitude, lon: dealer.longitude}
+            );
+            return {
+              id_dealer: dealer.id_dealer,
+              distance: distance,
+            }
+          }).sort(function(a, b) {
+            return a.distance - b.distance;
+          });
+
+          var closestDealers = [];
+          for (var i = 0; i < distances.length; i++) {
+            if (closestDealers.length === 3) {
+              break;
+            }
+            closestDealers.push(distances[i].id_dealer);
+          }
+
+          user.closestDealers = closestDealers;
+        }, function(err) {
+          console.log(err)
+        });
+    };
 
     function createUser() {
       // $storage.currentFilterIndex = -1;
@@ -102,6 +151,7 @@ angular.module('autoguiaFrontEndApp')
       filters: [{
         valid: false,
       }],
+      cars: [],
       info: {
         name: '',
         lastName: '',
@@ -112,8 +162,28 @@ angular.module('autoguiaFrontEndApp')
           latitude: 0.0,
           longitude: 0.0
         }
-      }
+      },
+      closestDealers: [],
     };
+
+    function formatUserForApi() {
+      var user = $storage.user;
+      var filter = user.filters[0];
+      return {
+        direccion: user.info.address,
+        nombres: user.info.name,
+        apellidos: user.info.lastName,
+        email: user.info.email,
+        telefono: user.info.phone,
+        array_id_tipo: filter.types,
+        array_id_marca: filter.brands,
+        array_id_subtipo: filter.versions,
+        array_id_auto: user.cars,
+        cuota_mensual_maxima: filter.maxRate,
+        valor_maximo: filter.maxVale,
+        dealers_cercanos: user.closestDealers,
+      };
+    }
 
     return service;
   });

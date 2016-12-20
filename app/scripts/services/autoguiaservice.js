@@ -17,6 +17,10 @@ angular.module('autoguiaFrontEndApp')
       return $http.post(BASE_URL + "tipos_auto/exists");
     }
 
+    service.dealers = function() {
+      return $http.get(BASE_URL + 'dealers');
+    };
+
     service.getBrands = function(types) {
       return $http({
         url: BASE_URL + "tipos_auto/exists/marcas",
@@ -53,13 +57,6 @@ angular.module('autoguiaFrontEndApp')
           valor_maximo: filtro.maxValue,
           cuota_mensual_maxima: filtro.maxRate
         }
-      });
-    }
-
-    service.saveUser = function(data) {
-      return $http({
-        url: BASE_URL + "guardar_user",
-        method: "POST",
       });
     }
 
