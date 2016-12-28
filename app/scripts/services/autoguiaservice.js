@@ -81,7 +81,15 @@ angular.module('autoguiaFrontEndApp')
           array_id_subtipo: filtro.versions,
         }
       });
-    }
+    };
+
+    /**
+     * @desc Function to login an User.
+     * @param user (Should have username ans password attributes)
+     */
+    service.login = function(user) {
+      return $http.post(BASE_URL + "login/front", user);
+    };
 
     return service;
   });

@@ -102,6 +102,11 @@ angular.module('autoguiaFrontEndApp')
       }
     };
 
+    service.valid = function() {
+      return typeof $storage.user !== 'undefined' &&
+        $storage.user.filters[0].valid;
+    };
+
     service.saveUser = function() {
       service.calculateClosestDealers();
       console.log(formatUserForApi());

@@ -1,0 +1,78 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col s12 m6 offset-m3 z-depth-1 grey lighten-4 hoverable">
+
+      <div class="row indigo accent-1">
+        <div class="col s12">
+          <h2 class="center-align login-header">Login</h2>
+          <p class="password-info center-align ">Ingresa con la contraseña que enviamos a tu correo!</p>
+        </div>
+      </div>
+
+      <form class="col s12">
+        <div class='row'>
+          <div class='input-field col s12'>
+            <i class="material-icons prefix">account_circle</i>
+            <input ng-model="vm.user.username" class='validate' type='email' name='email' id='email' />
+            <label ng-class="{active: vm.user.username}" for='email'>Correo</label>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='input-field col s12 m12'>
+            <i class="material-icons prefix">lock</i>
+            <input ng-model="vm.user.password" class='validate' type='password' name='password' id='password' />
+            <label ng-class="{active: vm.user.password}" for='password'>Contraseña</label>
+          </div>
+          <label style='float: right;'>
+    				<a class='pink-text' href='#!'><b>Olvidastes tu Contraseña?</b></a>
+    			</label>
+        </div>
+
+        <div class="row center-align" ng-show="vm.loginRequest">
+          <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row z-depth-1 red lighten-1" ng-show="vm.loginError">
+          <div class="row col s8 offset-s2">
+            <p class="white-text center-align">Credenciales invalidas</p>
+          </div>
+        </div>
+
+        <div class='row'>
+          <button ng-click="vm.login()" type='submit' class='col s10 offset-s1 btn btn-large waves-effect indigo'>
+            Login
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="form-modal" class="modal">
+  <div class="modal-content grey darken-4">
+    <h2 class="center-align white-text">Elige una opcion:</h2>
+    <div class="row">
+      <div class="left-option col s12 m6 waves-effect" ng-click="vm.goToPage('/step-3')">
+        <p class="flow-text center-align">Ver autos ya escogidos previamente!</p>
+      </div>
+      <div class="right-option col s12 m6 waves-effect" ng-click="vm.restart()">
+        <p class="flow-text center-align">Escoger nuevos opciones o filtros!</p>
+      </div>
+    </div>
+  </div>
+</div>

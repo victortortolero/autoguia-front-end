@@ -177,3 +177,36 @@ section h5 a {
 #cantidad-autos {
   margin-top: 5px;
 }
+
+.password-info {
+  border-right: 5px solid #c5cae9;
+  border-left: 5px solid #c5cae9;
+  /*margin: 20px 0;*/
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.login-header {
+  /*text-shadow: 2px 2px #303f9f;*/
+}
+
+.left-option {
+  border: 3px solid #4278c3;
+  color: #4278c3 !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.left-option:hover {
+  background-color: #4278c3;
+  color: white !important;
+}
+
+.right-option {
+  border: 3px solid #3c8724;
+  color: #3c8724 !important;
+}
+
+.right-option:hover {
+  background-color: #3c8724;
+  color: white !important;
+}

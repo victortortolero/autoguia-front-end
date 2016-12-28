@@ -21,6 +21,11 @@ angular.module('autoguiaFrontEndApp')
 
     vm.filter = userDataService.newUserFilter();
 
+    console.log(userDataService.valid());
+    if (userDataService.valid()) {
+      loginPage();
+    }
+
     activate();
 
     vm.toggleSelection = UtilitiesService.toggleSelection;
@@ -79,5 +84,10 @@ angular.module('autoguiaFrontEndApp')
     vm.nextPage = function() {
       userDataService.saveFilter(vm.filter);
       $location.path('/step-2');
-    }
+    };
+
+    function loginPage() {
+      $location.path('/login');
+    };
+
   });
