@@ -108,15 +108,19 @@ angular.module('autoguiaFrontEndApp')
     };
 
     service.saveUser = function() {
-      service.calculateClosestDealers();
-      console.log(formatUserForApi());
-      return $http.post(BASE_URL + 'user/new', formatUserForApi());
+      return service.calculateClosestDealers()
+      .then(function() {
+        console.log(formatUserForApi());
+        return $http.post(BASE_URL + 'user/new', formatUserForApi());
+      });
+      // console.log(formatUserForApi());
+      // return $http.post(BASE_URL + 'user/new', formatUserForApi());
     };
 
     service.calculateClosestDealers = function() {
       var user = $storage.user;
       var location = $storage.user.info.location;
-      autoGuiaService.dealers()
+      return autoGuiaService.dealers()
         .then(function(res) {
           var dealers = res.data;
 
