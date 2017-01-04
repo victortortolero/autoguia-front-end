@@ -65,6 +65,8 @@ angular.module('autoguiaFrontEndApp')
           console.log(vm.cars);
           getNCars(10);
           gridifyItems(vm.items, vm.gridWidth, vm.gridHeight, 0, 'id_auto');
+        }).catch(function(err) {
+          console.log(err);
         });
     }
 

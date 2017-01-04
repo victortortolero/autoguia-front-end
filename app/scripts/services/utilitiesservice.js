@@ -18,6 +18,8 @@ function utilities($localStorage) {
   this.createValidStepsSet = function() {
     if (typeof $storage.validSteps === 'undefined') {
       $storage.validSteps = validSteps.set;
+    } else {
+      validSteps.set = $storage.validSteps;
     }
   };
 
