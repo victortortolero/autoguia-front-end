@@ -210,3 +210,83 @@ section h5 a {
   background-color: #3c8724;
   color: white !important;
 }
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/*.circle {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #fff;
+  line-height: 500px;
+  text-align: center;
+  background: #000
+}*/
+
+section.thanks .col {
+  padding: 10px 5px;
+}
+
+/* Circle Steps Section! */
+#steps li {
+  width: 2.5em;
+  height: 2.5em;
+  text-align: center;
+  line-height: 2.5em;
+  border-radius: 1.25em;
+  background: dodgerblue;
+  margin: 0 1em;
+  display: inline-block;
+  color: white;
+  position: relative;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+#steps li:hover {
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.18),
+    0 2px 12px 1px rgba(0, 0, 0, 0.14),
+    inset 0 0px 20px 4px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+#steps li::before{
+  content: '';
+  position: absolute;
+  top: 1.2em;
+  left: -4em;
+  width: 4em;
+  height: .2em;
+  background: dodgerblue;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+#steps li:first-child::before {
+  display: none;
+}
+
+#steps .active {
+  background: dodgerblue;
+}
+
+#steps .active ~ li {
+  background: lightblue;
+  box-shadow: none;
+}
+
+#steps .active ~ li:hover {
+  box-shadow: none;
+  cursor: default;
+}
+
+#steps .active ~ li::before {
+  background: lightblue;
+}

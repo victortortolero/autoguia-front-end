@@ -8,8 +8,10 @@
  * Controller of the autoguiaFrontEndApp
  */
 angular.module('autoguiaFrontEndApp')
-  .controller('SavefilterCtrl', function ($location, userDataService) {
+  .controller('SavefilterCtrl', function ($rootScope, $location, userDataService) {
     var vm = this;
+
+    $rootScope.currentPath = $location.path();
 
     // userDataService.saveUser();
     // var currentUser = userDataService.currentUser();
@@ -19,4 +21,8 @@ angular.module('autoguiaFrontEndApp')
       userDataService.reset();
       $location.path('/');
     };
+
+    vm.goToLogin = function() {
+      $location.path('/login');
+    }
   });

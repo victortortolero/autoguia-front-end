@@ -36,6 +36,20 @@ angular.module('autoguiaFrontEndApp')
       return filter;
     }
 
+    service.login = function() {
+      $storage.user.login = true;
+    }
+
+    service.logout = function() {
+      $storage.user.login = false;
+    }
+
+    service.userLogged = function() {
+      return typeof $storage.user !== 'undefined' &&
+        typeof $storage.user.login !== 'undefined' &&
+        $storage.user.login;
+    }
+
     service.saveFilter = function(filter) {
       $storage.user.filters[0] = angular.extend($storage.user.filters[0], filter);
     }
@@ -92,7 +106,7 @@ angular.module('autoguiaFrontEndApp')
 
     service.validate = function() {
       return $storage.user.filters.length >= 1;
-    }
+    };
 
     service.validateVersion = function() {
       for (var prop in localStorage) {
@@ -113,8 +127,6 @@ angular.module('autoguiaFrontEndApp')
         console.log(formatUserForApi());
         return $http.post(BASE_URL + 'user/new', formatUserForApi());
       });
-      // console.log(formatUserForApi());
-      // return $http.post(BASE_URL + 'user/new', formatUserForApi());
     };
 
     service.calculateClosestDealers = function() {
@@ -172,6 +184,7 @@ angular.module('autoguiaFrontEndApp')
           longitude: 0.0
         }
       },
+      logged: false,
       closestDealers: [],
     };
 

@@ -17,6 +17,8 @@ angular.module('autoguiaFrontEndApp')
     validate();
     var vm = this;
 
+    UtilitiesService.addStep(2);
+
     vm.versions = [];
     vm.filter = userDataService.currentFilter();
     console.log(vm.filter);

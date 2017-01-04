@@ -21,8 +21,9 @@ angular.module('autoguiaFrontEndApp')
     vm.currentCar = 0;
     $rootScope.selectedCars = vm.selectedCars = [];
 
+    UtilitiesService.addStep(3);
+
     vm.filter = userDataService.currentFilter();
-    console.log(vm.filter);
     vm.user = {};
 
     vm.options = {

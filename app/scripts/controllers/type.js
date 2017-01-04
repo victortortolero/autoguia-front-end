@@ -15,16 +15,18 @@ angular.module('autoguiaFrontEndApp')
     $rootScope.currentPath = $location.path();
     var vm = this;
 
+    UtilitiesService.addStep(1);
+
     vm.types = [];
     vm.brands = [];
     vm.sideCars = [];
 
     vm.filter = userDataService.newUserFilter();
 
-    console.log(userDataService.valid());
-    if (userDataService.valid()) {
-      loginPage();
-    }
+    // console.log(userDataService.valid());
+    // if (userDataService.valid()) {
+    //   loginPage();
+    // }
 
     activate();
 
@@ -82,6 +84,8 @@ angular.module('autoguiaFrontEndApp')
     }
 
     vm.nextPage = function() {
+      UtilitiesService.removeStep(2);
+      UtilitiesService.removeStep(3);
       userDataService.saveFilter(vm.filter);
       $location.path('/step-2');
     };

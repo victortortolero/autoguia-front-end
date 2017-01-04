@@ -66,17 +66,52 @@ angular
     $localStorageProvider.setKeyPrefix('autoguia-' + CURRENT_VERSION + '-');
     cfpLoadingBarProvider.includeSpinner = false;
   })
-  .run(function(userDataService, LoadingBarService, $rootScope, $location) {
+  .run(function(userDataService, LoadingBarService, $rootScope, $location, $document, UtilitiesService) {
+    $rootScope.userIsLogged = false;
     userDataService.init();
     LoadingBarService.loading(false);
     $rootScope.currentPath = $location.path();
+    $rootScope.selectedCars = [];
+    $rootScope.UserService = userDataService;
+    UtilitiesService.createValidStepsSet();
 
     $rootScope.userLogged = function() {
-      return userDataService.validFilter();
+      return userDataService.userLogged();
     };
 
     $rootScope.currentUser = function() {
-      return userDataService.currentUser().info;
+      $rootScope.userIsLogged = userDataService.currentUser().info;
+      return $rootScope.userIsLogged;
+    };
+
+    $document.ready(function() {
+      $(".button-collapse").sideNav();
+      $(".dropdown-button").dropdown();
+    });
+
+    $rootScope.goToLogin = function() {
+      $rootScope.lastPath = '#' + $location.path();
+      $location.path('/login');
+    };
+
+    $rootScope.goToLastPath = function() {
+      if (typeof $rootScope.lastPath !== 'undefined') {
+        return $location.path($rootScope.lastPath);
+      }
+      $location.path('/');
+    };
+
+    $rootScope.highestValidStep = function(step) {
+      return UtilitiesService.getMaxValidStep();
+    };
+
+    $rootScope.goToStep = function(step) {
+      if (UtilitiesService.validStep(step)) {
+        var localStep = step === 1 ? '/' : ('/step-' + step);
+        $location.path(localStep);
+      } else {
+        console.log('invalid');
+      }
     };
 
   });

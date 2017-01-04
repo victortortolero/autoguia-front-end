@@ -1,17 +1,20 @@
-<div class="row">
-  <h1 class="flow-text">
-    Gracias por usarnos. Pronto tendra las mejores ofertas en su correo!
-  </h1>
+<section class="container thanks">
+  <div class="row">
+    <div class="col s10 offset-s1 white section z-depth-1">
+      <h1 class="flow-text center-align">
+        Gracias por usarnos. Pronto tendra las mejores ofertas en su correo!
+      </h1>
 
-  <div class="col s12 m6">
-    <button ng-click="vm.reset()" class="btn waves-effect waves-light red">
-      Ver mas autos!
-    </button>
-  </div>
+      <div class="divider"></div>
 
-  <div class="col s12 m6">
-    <button ng-click="vm.reset()" class="btn waves-effect waves-light red">
-      Ver mas autos!
-    </button>
+      <h3 class="flow-text">
+        Lo invitamos a iniciar sesion con la contraseña que enviamos a su correo!
+      </h3>
+      <div class="col s12 m6 center-align">
+        <button ng-click="vm.goToLogin()" class="btn waves-effect waves-light red">
+          Login!
+        </button>
+      </div>
+    </div>
   </div>
-</div>
+</section>

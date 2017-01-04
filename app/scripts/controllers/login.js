@@ -52,6 +52,7 @@ angular.module('autoguiaFrontEndApp')
           vm.loginRequest = false;
           if (data.state) {
             $('#form-modal').openModal(modalOptions);
+            userDataService.login();
           } else {
             vm.loginError = true;
           }
