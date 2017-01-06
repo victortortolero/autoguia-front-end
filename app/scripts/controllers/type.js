@@ -23,6 +23,8 @@ angular.module('autoguiaFrontEndApp')
 
     vm.filter = userDataService.newUserFilter();
 
+    console.log(userDataService.currentFilter());
+
     // console.log(userDataService.valid());
     // if (userDataService.valid()) {
     //   loginPage();

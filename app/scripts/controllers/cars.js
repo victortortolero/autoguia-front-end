@@ -59,10 +59,10 @@ angular.module('autoguiaFrontEndApp')
     }
 
     function activate() {
+      console.log(vm.filter);
       autoGuiaService.cars(vm.filter)
         .then(function(response) {
           vm.cars = response.data;
-          console.log(vm.cars);
           getNCars(10);
           gridifyItems(vm.items, vm.gridWidth, vm.gridHeight, 0, 'id_auto');
         }).catch(function(err) {
@@ -89,12 +89,10 @@ angular.module('autoguiaFrontEndApp')
           userDataService.validateFilter();
           userDataService.saveUser()
             .then(function(res) {
-              console.log("saved user");
-              console.log(res);
+              vm.nextPage();
             }, function(error) {
               console.log(error);
             });
-          vm.nextPage();
         });
     }
 

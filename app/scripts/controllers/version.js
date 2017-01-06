@@ -13,7 +13,7 @@ angular.module('autoguiaFrontEndApp')
     userDataService, UtilitiesService, LoadingBarService, $rootScope) {
 
     $rootScope.currentPath = $location.path();
-    console.log($rootScope.currentPath);
+
     validate();
     var vm = this;
 
@@ -21,7 +21,6 @@ angular.module('autoguiaFrontEndApp')
 
     vm.versions = [];
     vm.filter = userDataService.currentFilter();
-    console.log(vm.filter);
     vm.filter.versions = [];
     vm.filter.maxRate = 0;
     vm.filter.maxValue = 0;
@@ -32,6 +31,7 @@ angular.module('autoguiaFrontEndApp')
     vm.maxRate = 5000;
     vm.maxValue = 200000;
 
+    console.log(vm.filter);
 
     activate();
 
@@ -100,6 +100,7 @@ angular.module('autoguiaFrontEndApp')
 
     vm.nextPage = function() {
       userDataService.saveFilter(vm.filter);
+      userDataService.validateFilter();
       $location.path('/step-3');
     }
 

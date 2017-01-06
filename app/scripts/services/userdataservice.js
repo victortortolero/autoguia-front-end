@@ -67,7 +67,7 @@ angular.module('autoguiaFrontEndApp')
     }
 
     service.currentFilter = function() {
-      return $storage.user.filters[0];
+      return angular.extend({}, $storage.user.filters[0]);
     }
 
     service.currentUser = function() {
