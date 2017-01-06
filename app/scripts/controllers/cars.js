@@ -23,10 +23,6 @@ angular.module('autoguiaFrontEndApp')
 
     UtilitiesService.addStep(3);
 
-    GoogleGeolocationService.getPosition()
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err));
-
     vm.filter = userDataService.currentFilter();
     vm.user = {};
 
