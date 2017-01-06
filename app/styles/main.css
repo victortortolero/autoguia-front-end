@@ -290,3 +290,8 @@ section.thanks .col {
 #steps .active ~ li::before {
   background: lightblue;
 }
+
+.checkbox-white[type="checkbox"].filled-in:checked + label:after{
+  border: 2px solid #fff;
+  background-color: #fff;
+}

@@ -81,6 +81,10 @@ angular.module('autoguiaFrontEndApp')
       $storage.user.cars = cars;
     };
 
+    service.savedCars = function() {
+      return $storage.user.cars;
+    };
+
     /**
      * Validates step 1 filters.
      * Checks if the user at least has 1 type and 1 brand.

@@ -29,7 +29,8 @@
             <p>
               <input
                 type="checkbox"
-                ng-checked="vm.filter.types.indexOf(item.nombre_version) > -1"
+                class="checkbox-white filled-in"
+                ng-checked="vm.selectedCars.indexOf(item.id_auto) > -1"
                 ng-click="vm.toggleObjectSelection(item, 'id_auto', vm.selectedCars)"
                 id="{{ 'car-' + item.id_auto }}"
               />

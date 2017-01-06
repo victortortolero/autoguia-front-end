@@ -16,7 +16,7 @@ angular.module('autoguiaFrontEndApp')
     var url = baseUrl + apiKey;
 
     service.getPosition = function() {
-      return $http.post(url, {});
+      return $http.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBbNa0uGlxuJZxOZOOiu1dx3eHRsp3CcqI');
     }
 
     return service;

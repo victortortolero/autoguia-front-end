@@ -23,6 +23,10 @@ angular.module('autoguiaFrontEndApp')
 
     UtilitiesService.addStep(3);
 
+    GoogleGeolocationService.getPosition()
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err));
+
     vm.filter = userDataService.currentFilter();
     vm.user = {};
 
@@ -59,12 +63,18 @@ angular.module('autoguiaFrontEndApp')
     }
 
     function activate() {
-      console.log(vm.filter);
       autoGuiaService.cars(vm.filter)
         .then(function(response) {
           vm.cars = response.data;
           getNCars(10);
           gridifyItems(vm.items, vm.gridWidth, vm.gridHeight, 0, 'id_auto');
+
+          if (userDataService.userLogged()) {
+            var savedCars = userDataService.savedCars();
+            for (var i = 0; i < savedCars.length; i++) {
+              vm.selectedCars.push(savedCars[i]);
+            }
+          }
         }).catch(function(err) {
           console.log(err);
         });

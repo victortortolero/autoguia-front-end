@@ -31,8 +31,6 @@ angular.module('autoguiaFrontEndApp')
     vm.maxRate = 5000;
     vm.maxValue = 200000;
 
-    console.log(vm.filter);
-
     activate();
 
     vm.toggleSelection = UtilitiesService.toggleSelection;

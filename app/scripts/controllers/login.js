@@ -51,6 +51,7 @@ angular.module('autoguiaFrontEndApp')
           var data = res.data;
           vm.loginRequest = false;
           if (data.state) {
+            var idUser = data.id_usuario;
             $('#form-modal').openModal(modalOptions);
             userDataService.login();
           } else {
