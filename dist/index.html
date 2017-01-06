@@ -1,15 +1,185 @@
-<!doctype html> <html> <head> <meta charset="utf-8"> <title></title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/vendor.060b48ba.css"> <link rel="stylesheet" href="styles/main.291e5298.css"> </head> <body ng-app="autoguiaFrontEndApp"> <!--[if lte IE 8]>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
+    <link rel="stylesheet" href="bower_components/gridstack/dist/gridstack.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="autoguiaFrontEndApp">
+    <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]--> <!-- Add your site or application content here --> <div class="header"> <div class="navbar-fixed"> <nav> <div class="nav-wrapper container"> <a href="#!" class="left brand-logo hide-on-med-and-down">Logo</a> <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a> <a ng-show="selectedCars.length >= 1 && currentPath === '/step-3'" class="btn waves-effect waves-light blue right" data-target="form-modal"> Guardar Preferencias! </a> <div ng-if="userLogged()" ng-cloak> <div class="chip right user-data hide-on-med-and-down"> <img src="images/user.3417dcaa.png" alt="Contact Person"> {{ currentUser().name | capitalize }} {{ currentUser().lastName | capitalize }} </div> <ul class="right hide-on-med-and-down"> <li> <a class="dropdown-button" href="#!" data-activates="dropdown1"> Opciones<i class="material-icons right">arrow_drop_down</i> </a> </li> <ul id="dropdown1" class="dropdown-content"> <!-- <li><a href="#!">Cambiar tipos y marcas!</a></li>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="header">
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper container">
+            <a href="#!" class="left brand-logo hide-on-med-and-down">Logo</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <a
+              ng-show="selectedCars.length >= 1 && currentPath === '/step-3'"
+              class="btn waves-effect waves-light blue right"
+              data-target="form-modal">
+              Guardar Preferencias!
+            </a>
+
+            <div ng-if="userLogged()" ng-cloak>
+              <div class="chip right user-data hide-on-med-and-down" >
+                <img src="images/user.png" alt="Contact Person">
+                {{ currentUser().name | capitalize }} {{ currentUser().lastName | capitalize }}
+              </div>
+
+
+
+              <ul class="right hide-on-med-and-down">
+                <li>
+                  <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                    Opciones<i class="material-icons right">arrow_drop_down</i>
+                  </a>
+                </li>
+
+                <ul id="dropdown1" class="dropdown-content">
+                  <!-- <li><a href="#!">Cambiar tipos y marcas!</a></li>
                   <li class="divider"></li>
                   <li><a href="#!">Cambiar subTipos y precios!</a></li>
-                  <li class="divider"></li> --> <!-- <li class="divider"></li>
-                  <li class="divider"></li> --> <li><a ng-click="UserService.logout()">Log Out</a></li> </ul> <!-- <li><a href="sass.html">Sass</a></li> --> </ul> </div> <div ng-if="!userLogged()"> <ul class="right hide-on-med-and-down"> <li ng-if="currentPath !== '/login'" ng-cloak> <a class="waves-effect waves-light btn indigo" ng-click="goToLogin()">Login</a> </li> <li ng-if="currentPath === '/login'" ng-cloak> <a class="waves-effect waves-light btn indigo" ng-click="goToLastPath()">Regresar</a> </li> </ul> </div> <ul class="side-nav" id="mobile-demo"> <li ng-if="userLogged()" ng-cloak><div class="userView"> <div class="background"> <img src="https://placehold.it/800x600"> </div> <a href="#!user"><img class="circle" src="images/user.3417dcaa.png"></a> <a href="#!name"><span class="white-text name"> {{ currentUser().name | capitalize }} {{ currentUser().lastName | capitalize }} </span></a> <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a> </div></li> <li ng-if="!userLogged()" ng-cloak> <a class="waves-effect waves-light btn" ng-click="goToLogin()">Login</a> </li> <li><a href="#!">Cambiar tipos y marcas!</a></li> <li class="divider"></li> <li><a href="#!">Cambiar subTipos y precios!</a></li> <li class="divider"></li> <li class="divider"></li> <li><a ng-click="goToLastPath()">Regresar</a></li> </ul></div>  <!-- <div ng-show="loadingBar" class="progress right">
+                  <li class="divider"></li> -->
+                  <!-- <li class="divider"></li>
+                  <li class="divider"></li> -->
+                  <li><a ng-click="UserService.logout()">Log Out</a></li>
+                </ul>
+                <!-- <li><a href="sass.html">Sass</a></li> -->
+              </ul>
+            </div>
+
+            <div ng-if="!userLogged()">
+              <ul class="right hide-on-med-and-down">
+                <li ng-if="currentPath !== '/login'" ng-cloak>
+                  <a class="waves-effect waves-light btn indigo" ng-click="goToLogin()">Login</a>
+                </li>
+                <li ng-if="currentPath === '/login'" ng-cloak>
+                  <a class="waves-effect waves-light btn indigo" ng-click="goToLastPath()">Regresar</a>
+                </li>
+              </ul>
+            </div>
+
+            <ul class="side-nav" id="mobile-demo">
+              <li ng-if="userLogged()" ng-cloak><div class="userView">
+                <div class="background">
+                  <img src="https://placehold.it/800x600">
+                </div>
+                <a href="#!user"><img class="circle" src="images/user.png"></a>
+                <a href="#!name"><span class="white-text name">
+                  {{ currentUser().name | capitalize }} {{ currentUser().lastName | capitalize }}
+                </span></a>
+                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+              </div></li>
+              <li ng-if="!userLogged()" ng-cloak>
+                <a class="waves-effect waves-light btn" ng-click="goToLogin()">Login</a>
+              </li>
+              <li><a href="#!">Cambiar tipos y marcas!</a></li>
+              <li class="divider"></li>
+              <li><a href="#!">Cambiar subTipos y precios!</a></li>
+              <li class="divider"></li>
+              <li class="divider"></li>
+              <li><a ng-click="goToLastPath()">Regresar</a></li>
+              </div>
+            </ul>
+
+            <!-- <div ng-show="loadingBar" class="progress right">
               <div class="indeterminate"></div>
-            </div> --> </nav></div>  </div>  <div class="container"> <div class="divider"></div> <h3 class="flow-text section"> Compra, cotiza y recibe las mejores ofertas para tu nuevo auto </h3> <section id="steps" ng-if="currentPath !== '/login' && currentPath !== '/thanks'" ng-cloak> <div class="row"> <div class="col offset-s1 s10"> <ul class="center-align"> <li ng-click="goToStep(1)" ng-class="{active: highestValidStep() === 1}">1</li> <li ng-click="goToStep(2)" ng-class="{active: highestValidStep() === 2}">2</li> <li ng-click="goToStep(3)" ng-class="{active: highestValidStep() === 3}">3</li> </ul> </div> </div> <div class="divider"></div> </section> <div ng-view=""></div> </div> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>!function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+            </div> -->
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="divider"></div>
+      <h3 class="flow-text section">
+        Compra, cotiza y recibe las mejores ofertas para tu nuevo auto
+      </h3>
+
+      <section id="steps" ng-if="currentPath !== '/login' && currentPath !== '/thanks'" ng-cloak>
+        <div class="row">
+          <div class="col offset-s1 s10">
+            <ul class="center-align">
+              <li ng-click="goToStep(1)" ng-class="{active: highestValidStep() === 1}">1</li>
+              <li ng-click="goToStep(2)" ng-class="{active: highestValidStep() === 2}">2</li>
+              <li ng-click="goToStep(3)" ng-class="{active: highestValidStep() === 3}">3</li>
+            </ul>
+          </div>
+        </div>
+        <div class="divider"></div>
+      </section>
+
+      <div ng-view=""></div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
        }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
        ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');</script> <script src="scripts/vendor.d1dd45ed.js"></script> <script src="scripts/scripts.3c8343a6.js"></script> </body> </html>
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-cookies.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-messages.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-resource.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-sanitize.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-touch.min.js"></script>
+    <script src="bower_components/materialize/bin/materialize.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/gridstack/dist/gridstack.js"></script>
+    <script src="bower_components/ng-infinite-scroll-npm-is-better-than-bower/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/gridstack-angular/dist/gridstack-angular.min.js"></script>
+    <script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/type.js"></script>
+        <script src="scripts/filters/capitalize.js"></script>
+        <script src="scripts/services/autoguiaservice.js"></script>
+        <script src="scripts/services/userdataservice.js"></script>
+        <script src="scripts/controllers/version.js"></script>
+        <script src="scripts/controllers/cars.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/services/utilitiesservice.js"></script>
+        <script src="scripts/services/loadingbarservice.js"></script>
+        <script src="scripts/controllers/savefilter.js"></script>
+        <script src="scripts/services/googlegeolocationservice.js"></script>
+        <!-- endbuild -->
+
+</body>
+</html>
